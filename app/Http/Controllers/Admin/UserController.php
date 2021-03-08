@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -79,8 +80,11 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-       
-        return view('panel.edit' , compact("user"));
+        // if(Gate::allows('edit' , $user)){
+            $this->authorize('edit' , $user);
+            return view('panel.edit' , compact("user"));
+        // }
+        // abort(403) ;
     }
 
     /**
