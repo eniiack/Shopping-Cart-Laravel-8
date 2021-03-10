@@ -27,10 +27,10 @@ class HomeController extends Controller
 
     // $users = $users->paginate(20);
     // $role = Role::find(1);
-    if(Gate::allows('edit-user')){
+    // if(Gate::allows('edit-user')){
         return view('index' );
-    }
-    abort(403);
+    // }
+    // abort(403);
 
     // return $role->users()->get();
    

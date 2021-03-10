@@ -16,29 +16,40 @@
      <div class="main-menu-content">
          <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation"
              data-icon-style="lines">
+             @can('show-users')
              <li class="nav-item {{ isActive('admin.users.index') }}"><a href="{{ route('admin.users.index') }}"><i
                          class="menu-livicon" data-icon="user"></i><span class="menu-title"
                          data-i18n="Email">کاربران</span></a>
              </li>
+             @endcan
+             @can('create-permission')
              <li class=" nav-item  {{ isActive(['admin.permissions.index'], 'has-sub open') }} "><a href="#"><i
                          class="menu-livicon" data-icon="notebook"></i><span class="menu-title"
                          data-i18n="Invoice">دسترسی ها</span></a>
                  <ul class="menu-content">
-                     <li><a href="app-invoice-list.html"><i class="bx bx-left-arrow-alt"></i><span class="menu-item"
-                                 data-i18n="Invoice List">همه مقام ها</span></a>
+                     <li class="{{ isActive('admin.roles.index') }}"><a href="{{ route('admin.roles.index') }}"><i
+                                 class="bx bx-left-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">همه
+                                 مقام ها</span></a>
+                     </li>
+                     <li class="{{ isActive('admin.roles.create') }}"><a href="{{ route('admin.roles.create') }}"><i
+                                 class="bx bx-left-arrow-alt "></i><span class="menu-item" data-i18n="Invoice">ایجاد
+                                 مقام</span></a>
                      </li>
                      <li class="{{ isActive('admin.permissions.index') }}"><a
                              href="{{ route('admin.permissions.index') }}"><i class="bx bx-left-arrow-alt "></i><span
                                  class="menu-item" data-i18n="Invoice">همه دسترسی ها</span></a>
                      </li>
                      <li class="{{ isActive('admin.permissions.create') }}"><a
-                             href="{{ route('admin.permissions.create') }}"><i class="bx bx-left-arrow-alt "></i><span
-                                 class="menu-item" data-i18n="Invoice">ایجاد دسترسی</span></a>
+                             href="{{ route('admin.permissions.create') }}"><i
+                                 class="bx bx-left-arrow-alt "></i><span class="menu-item" data-i18n="Invoice">ایجاد
+                                 دسترسی</span></a>
                      </li>
                  </ul>
              </li>
-             <li class=" nav-item {{ isActive('admin.') }}"><a href="{{ route('admin.') }}"><i class="menu-livicon"
-                         data-icon="comments"></i><span class="menu-title" data-i18n="Chat">گفتگو</span></a>
+             @endcan
+             <li class=" nav-item {{ isActive('admin.') }}"><a href="{{ route('admin.') }}"><i
+                         class="menu-livicon" data-icon="comments"></i><span class="menu-title"
+                         data-i18n="Chat">گفتگو</span></a>
              </li>
              <li class=" nav-item"><a href="app-todo.html"><i class="menu-livicon" data-icon="check-alt"></i><span
                          class="menu-title" data-i18n="Todo">وظایف</span></a>

@@ -41,7 +41,8 @@
     <script src="/assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js"></script>
     <script src="/assets/js/scripts/pages/page-users.js"></script>
     <!-- END: Page JS-->
-
+    <script src="/assets/vendors/js/forms/select/select2.full.min.js"></script>
+    <script src="/assets/js/scripts/forms/select/form-select2.js"></script>
 </body>
 <!-- END: Body-->
 

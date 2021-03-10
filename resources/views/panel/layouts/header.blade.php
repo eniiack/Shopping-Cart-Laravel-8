@@ -29,6 +29,7 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/core/menu/menu-types/vertical-menu.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/pages/dashboard-ecommerce.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/pages/page-users.css">
+    <link rel="stylesheet" type="text/css" href="/assets/vendors/css/forms/select/select2.min.css">
     <!-- END: Page CSS-->
 
 </head>

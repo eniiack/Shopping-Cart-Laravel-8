@@ -62,8 +62,12 @@
                                                 <tr>
                                                     <th class="text-center">نام کاربری</th>
                                                     <th class="text-center">ایمیل</th>
+                                                    @can('create-permission')
+                                                    <th class="text-center">دسترسی</th>
+                                                    @endcan
+                                                    @canany(['edit-user' , 'delete-user']) 
                                                     <th class="text-center">ویرایش</th>
-                                                    <th class="d-none"></th>
+                                                    @endcan
                                                     <th class="d-none"></th>
                                                     <th class="d-none"></th>
                                                     <th class="d-none"></th>
@@ -86,18 +90,43 @@
                                                     <tr>
                                                         <td class="text-center">{{ $user->name }}</td>
                                                         <td class="text-center">{{ $user->email }}</td>
-                                                        <td class="text-center d-flex justify-content-center align-items-center"><a
-                                                                href="{{ route('admin.users.edit', ['user' => $user->id]) }}"><i
-                                                                    class="bx bx-edit-alt"></i></a>
-                                                            <form method="POST"
-                                                                action="{{ route('admin.users.destroy', ['user' => $user->id]) }}">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <a style="padding: 0;" class="delete delete-product  ">
-                                                                    <button type="submit" class="bx bxs-trash wrap-delete"></button type="submit">
-                                                                </a>
-                                                            </form>
+                                                        {{-- @if (Auth()->user()->is_superuser) --}}
+                                                        @can('create-permission')
+                                                        <td
+                                                            class="text-center ">
+                                                            
+
+                                                                <a
+                                                                    href="{{ route('admin.users.permissions', $user->id) }}"><i
+                                                                        class="bx bx-select-multiple"></i></a>
+
+                                                            
                                                         </td>
+                                                        @endcan
+                                                        @can('edit-user' || 'delete-user') 
+                                                        <td
+                                                            class="text-center d-flex   justify-content-center ">
+                                                            @can('edit-user')
+                                                                <a
+                                                                    href="{{ route('admin.users.edit', ['user' => $user->id]) }}"><i
+                                                                        class="bx bx-edit-alt"></i></a>
+                                                                        @endcan
+                                                                        @can('delete-user')
+                                                                <form method="POST"
+                                                                    action="{{ route('admin.users.destroy', ['user' => $user->id]) }}">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <a style="padding: 0;" class="delete delete-product  ">
+                                                                        <button type="submit"
+                                                                            class="bx bxs-trash wrap-delete"></button
+                                                                            type="submit">
+                                                                    </a>
+                                                                </form>
+                                                                @endcan
+                                                        </td>
+                                                        @endcan
+                                                        {{-- @endif --}}
+                                                        
                                                         <td class="d-none"></td>
                                                         <td class="d-none"></td>
                                                         <td class="d-none"></td>
@@ -106,7 +135,7 @@
                                                     </tr>
                                                 @endforeach
                                             </tbody>
-                                         
+
                                             {{-- <ul class="pagination">
                                                 <li class="paginate_button page-item previous disabled" id="users-list-datatable_previous">
                                                     <a href="#" aria-controls="users-list-datatable" data-dt-idx="0" tabindex="0" class="page-link">قبلی</a>
@@ -120,7 +149,7 @@
                                             </ul> --}}
                                         </table>
                                     </div>
-                                    
+
                                     <!-- datatable ends -->
                                 </div>
                             </div>
