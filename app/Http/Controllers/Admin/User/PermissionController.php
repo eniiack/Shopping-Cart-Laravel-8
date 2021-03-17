@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\User;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PermissionController extends Controller
 {
@@ -35,4 +36,7 @@ class PermissionController extends Controller
         alert()->success('با موفقیت ایجاد شد', 'موفقیت');
         return redirect(route('admin.users.index'));
     }
+
+   
+    
 }

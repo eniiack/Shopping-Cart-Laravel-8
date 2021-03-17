@@ -40,9 +40,9 @@ Route::get('/register/{id}', function ($id) {
    $article = User::find($id);
    return $article;
 });
-Route::post('/register', [CustomAuthController::class , 'register_form'])->name('register');
-Route::get('/login', [CustomAuthController::class , 'login'] );
-Route::post('/login', [CustomAuthController::class , 'login_form'] )->name('login');
+Route::post('/register', [CustomAuthController::class , 'register_form'])->name('register')->middleware('loginMiddelware');
+Route::get('/login', [CustomAuthController::class , 'login'] )->middleware('loginMiddelware');
+Route::post('/login', [CustomAuthController::class , 'login_form'] )->name('login')->middleware('loginMiddelware');
 Route::post('/logout' , [CustomAuthController::class , 'logout'] )->name('logout');
 Route::get('/recovery_password', [CustomAuthController::class , 'recovery'] )->name('recovery');
 Route::post('/recovery_password', [CustomAuthController::class , 'recover_password'] )->name('recovery');

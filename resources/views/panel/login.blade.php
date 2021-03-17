@@ -12,11 +12,9 @@
                         <div class="account-box">
                             <a href="#" class="account-box-logo">digistore</a>
                             <div class="account-box-headline">
-                                <a href="login" class="login-ds active-account">ورود</a>
-                                <a href="register" class="register-ds">ثبت نام</a>
                             </div>
                             <div class="account-box-content">
-                                <form method="POST" action="{{ route('login') }}" class="form-account">
+                                <form method="POST" action="{{ route('admin.loginAdminPost') }}" class="form-account">
                                     @csrf
                                     <div class="form-account-title">
                                         <label for="email-phone">ایمیل</label>
@@ -38,6 +36,7 @@
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
+                                   
                                     <div class="form-auth-row ">
                                         {{-- <div class="g-recaptcha @error('g-recaptcha-response') is-invalid @enderror" data-sitekey="{{ env ('GOOGLE_RECAPTCHA_SITE_KEY') }}"></div> --}}
                                         @recaptcha
@@ -45,21 +44,12 @@
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                     </div>
-                                    <div class="form-auth-row">
-                                        <label for="#" class="ui-checkbox">
-                                            <input type="checkbox" value="1" name="remember" checked="" id="remember">
-                                            <span class="ui-checkbox-check"></span>
-                                        </label>
-                                        <label for="remember" class="remember-me">مرا به خاطر داشته باش</label>
-                                    </div>
-                                   
                                     <div class="parent-btn lr-ds">
                                         <button class="dk-btn dk-btn-info">
                                             ورود به دیجی اسمارت
                                             <i class="fa fa-sign-in sign-in"></i>
                                         </button>
                                     </div>
-                                    
                                 </form>
                             </div>
                         </div>

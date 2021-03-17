@@ -1,4 +1,4 @@
-@section('head' , 'test')
+@section('head' , 'دیجی اسمارت')
 
 @include('layouts.header')
 @include('layouts.topbar')

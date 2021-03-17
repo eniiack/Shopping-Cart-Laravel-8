@@ -1,4 +1,4 @@
-@section('head', 'Register')
+@section('head', 'ثبت نام')
     @include('layouts.header')
     <!--page-login-------------------------->
     <div class="container-main">

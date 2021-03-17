@@ -38,33 +38,34 @@ class CustomAuthController extends Controller
         // }
     
     
-    
         $pass = Hash::make($valid_data['password']);
-            User::create([
-                "name" => $valid_data['name'],
-                "email" => $valid_data['email'],
-                "password" => $pass
-            ]);
-    
-            alert()->success('با موفقیت ثبت نام شدید', 'موفقیت');
-            $user = User::where('email' , $valid_data['email'])->first();
+        User::create([
+            "name" => $valid_data['name'],
+            "email" => $valid_data['email'],
+            "password" => $pass
+        ]);
 
-            Auth::login($user);
-            // try 
-            // {
-            //     $message = "تست ارسال وب سرویس قاصدک";
-            //     $lineNumber = "10008566";
-            //     $receptor = "09907763077";
-            //     $api = new \Ghasedak\GhasedakApi('48d84b128159a19a187ef77e8780873f277325c9eca430c62ca069eb817031de');
-            //     $api->SendSimple($receptor,$message,$lineNumber);
-            // }
-            // catch(\Ghasedak\Exceptions\ApiException $e){
-            //     throw $e;
-            // }
-            // catch(\Ghasedak\Exceptions\HttpException $e){
-            //     echo $e->errorMessage();
-            // }
-            return redirect('/');
+        alert()->success('با موفقیت ثبت نام شدید', 'موفقیت');
+        $user = User::where('email' , $valid_data['email'])->first();
+
+        Auth::login($user);
+        // try 
+        // {
+        //     $message = "تست ارسال وب سرویس قاصدک";
+        //     $lineNumber = "10008566";
+        //     $receptor = "09907763077";
+        //     $api = new \Ghasedak\GhasedakApi('48d84b128159a19a187ef77e8780873f277325c9eca430c62ca069eb817031de');
+        //     $api->SendSimple($receptor,$message,$lineNumber);
+        // }
+        // catch(\Ghasedak\Exceptions\ApiException $e){
+        //     throw $e;
+        // }
+        // catch(\Ghasedak\Exceptions\HttpException $e){
+        //     echo $e->errorMessage();
+        // }
+        $token = Hash::make($valid_data['email']. date("YmdHis") . "3pu4098eygriuio43y8");
+        session(['person' => $token]);
+        return redirect('/');
     }
 
     public function login()
@@ -76,15 +77,21 @@ class CustomAuthController extends Controller
 
     public function login_form(LoginRequest $request)
     {
-        //   dd(request()->all());
+         
     $valid_data = $request->validated();
 
     $email = request('email');
   
     $user = User::where('email' , $email)->first();
+    
 
         Auth::login($user);
         alert()->success('با موفقیت وارد شدید', 'موفقیت');
+        $token = Hash::make($valid_data['email']. date("YmdHis") . "3pu4098eygriuio43y8");
+        if($request->remember == 1){
+            cookie()->queue(cookie('person' , $request->email , 60 * 8760));
+        }
+        session(['person' => $token]);
         return redirect('/');
    
     }
@@ -92,8 +99,10 @@ class CustomAuthController extends Controller
     public function logout()
     {
         Auth::logout();
+        session()->forget('person');
+        cookie()->queue(cookie()->forget('person'));
         alert()->success('با موفقیت خارج شدید', 'موفقیت');
-    
+        
         return redirect('/');
     }
 

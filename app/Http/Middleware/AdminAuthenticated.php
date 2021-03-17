@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminAuthenticated
 {
@@ -16,10 +17,12 @@ class AdminAuthenticated
      */
     public function handle(Request $request, Closure $next)
     {
+        if($request->session()->has('admin')){
         if($request->user()->isSuperuser() || $request->user()->isStaff()){
             return $next($request);
         }
-        return redirect('/');
+        }
+        return redirect('admin/login');
 
     }
 }
