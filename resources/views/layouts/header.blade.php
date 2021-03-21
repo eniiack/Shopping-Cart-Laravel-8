@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/css/materialdesignicons.css.map">
     <!--    bootstrap------------------------------->
     <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/bootstrap-slider.min.css">
     <!--    owl.carousel---------------------------->
     <link rel="stylesheet" href="/css/owl.carousel.min.css">
     <!--    responsive------------------------------>

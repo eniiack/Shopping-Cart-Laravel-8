@@ -685,10 +685,11 @@
                         <ul class="content-area">
                             <li class="item-content" style="display:block;">
                                 <a href="#" class="link-content">
+                                    @foreach($products as $product)
                                     <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
                                         <div class="product-vertical">
                                             <div class="vertical-product-thumb">
-                                                <a href="#">
+                                                <a href="{{ route('show_product', ['product' => $product->title]) }}">
                                                     <div class="stars-plp">
                                                         <span class="mdi mdi-star active"></span>
                                                         <span class="mdi mdi-star active"></span>
@@ -702,11 +703,11 @@
                                             <div class="card-vertical-product-content">
                                                 <div class="card-vertical-product-title">
                                                     <a href="#">
-                                                        ساعت هوشمند جی-تب مدل W101 Hero
+                                                       {{$product->title}}
                                                     </a>
                                                 </div>
                                                 <div class="card-vertical-product-price">
-                                                    ۱۲۷,۰۰۰
+                                                    {{number_format($product->price)}}
                                                     <span class="price-currency">تومان</span>
                                                 </div>
                                                 <div class="product-actions-secondary">
@@ -726,7 +727,7 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    @endforeach
                                     <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
                                         <div class="product-vertical">
                                             <div class="vertical-product-thumb">

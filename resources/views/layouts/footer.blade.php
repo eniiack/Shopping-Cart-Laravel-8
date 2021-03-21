@@ -237,6 +237,7 @@
 <script src="/js/jquery-3.2.1.min.js"></script>
 <!--    bootstrap-------------------------------->
 <script src="/js/bootstrap.js"></script>
+<script src="/js/bootstrap-slider.min.js"></script>
 <!--    owl.carousel----------------------------->
 <script src="/js/owl.carousel.min.js"></script>
 <!--main----------------------------------------->

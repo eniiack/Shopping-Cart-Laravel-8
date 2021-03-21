@@ -180,6 +180,9 @@ return [
         'area'                  => 'منطقه',
         'national_code'         => 'کد ملی',
         'privacy'         => 'قوانین',
-        'g-recaptcha-response' => 'احراز هویت'
+        'g-recaptcha-response' => 'احراز هویت',
+        'price' => 'قیمت',
+        'count' => 'تعداد',
+        "comment" => "نظر"
     ],
 ];
