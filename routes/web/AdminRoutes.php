@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CommentsController;
 use App\Http\Controllers\Admin\LoginController;
@@ -30,3 +31,4 @@ Route::resource('comments', CommentsController::class )->only(['index' , 'update
 
 Route::resource('categories', CategoryController::class );
 
+Route::post('attribute/values', [AttributeController::class , 'getvalues'] );

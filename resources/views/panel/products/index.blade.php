@@ -87,3 +87,4 @@
 
 
     @include('panel.layouts.footer')
+    @yield('jsform')

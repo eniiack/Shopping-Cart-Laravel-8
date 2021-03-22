@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Attribute;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+use function GuzzleHttp\Promise\each;
+use function PHPUnit\Framework\isNull;
 
 class ProductController extends Controller
 {
@@ -41,17 +45,26 @@ class ProductController extends Controller
     {
 
         $data = $request->validate([
-            'title' => ['required', 'string', 'max:255' , Rule::unique('products')->ignore($product->id)],
+            'title' => ['required', 'string', 'max:255' , 'unique:products,title,' . $product->id ],
             'description' => ['required', 'string', 'max:500'],
             'price' => ['required', 'integer'],
             'count' => ['required', 'integer'],
-            'categories' => ['required']
+            'categories' => ['required'],
+            'attributes' => ['array']
         ]);
-
-
+        $attribute = collect($data['attributes']);
+       
         $data['user_id'] = Auth::user()->id;
         $alldata = auth()->user()->products()->create($data);
         $alldata->categories()->sync($data['categories']);
+
+        $attribute->each(function($item) use($alldata , $data) {
+            if(is_null($item['name']) || is_null($item['value'])) return;
+            $attr = Attribute::firstOrCreate(['name' => $item['name']]);
+            $attr_value = $attr->values()->firstOrCreate(['value' => $item['value']]);
+            $alldata->attributes()->attach($attr->id , ['value_id' => $attr_value->id]);
+        });
+        
         alert()->success('با موفقیت ساخته شد', 'موفقیت');
         return redirect(route('admin.products.index'));
     }
@@ -88,16 +101,27 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $data = $request->validate([
-            'title' => ['required', 'string', 'max:255' , Rule::unique('products')->ignore($product->id)],
+            'title' => ['required', 'string', 'max:255' , 'unique:products,title,' . $product->id ],
             'description' => ['required', 'string', 'max:500'],
             'price' => ['required', 'integer'],
             'count' => ['required', 'integer'],
-            'categories' => ['required']
+            'categories' => ['required'],
+            'attributes' => ['array']
         ]);
-
-
+        $attribute = collect($data['attributes']);
         $product->update($data);
         $product->categories()->sync($data['categories']);
+        $product->attributes()->detach();
+        $attribute->each(function($item) use($product , $data) {
+            if(is_null($item['name']) || is_null($item['value'])) return;
+            $attr = Attribute::firstOrCreate(['name' => $item['name']]);
+            $attr_value = $attr->values()->firstOrCreate(['value' => $item['value']]);
+            $product->attributes()->attach($attr->id , ['value_id' => $attr_value->id]);
+        });
+
+
+
+
         alert()->success('با موفقیت ویرایش شد', 'موفقیت');
         return redirect(route('admin.products.index'));
     }

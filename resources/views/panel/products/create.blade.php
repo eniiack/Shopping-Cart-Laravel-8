@@ -20,6 +20,7 @@
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
+                                        <div id="attributes" data-attributes="{{ json_encode(\App\Models\Attribute::all()->pluck('name')) }}"></div>
                                         <form class="form form-vertical" method="post"
                                             action="{{ route('admin.products.store') }}">
                                             @csrf
@@ -77,6 +78,15 @@
                                                             @enderror
                                                         </div>
                                                     </div>
+                                                    <div class="col-12">
+                                                        <div id="attribute_section">
+
+                                                        </div>
+                                                    <button class="btn btn-sm btn-danger" type="button" id="add_product_attribute">ویژگی جدید</button>
+                                                        
+                                                    </div>
+                                                   
+                                                    
                                                     <div class="col-12 d-flex justify-content-end">
                                                         <button type="submit" class="btn btn-primary mr-1 mb-1">ثبت</button>
                                                     </div>
@@ -94,3 +104,4 @@
     </div>
 
     @include('panel.layouts.footer')
+    @yield('jsform')
