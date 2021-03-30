@@ -13,10 +13,25 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use App\Models\Product;
 use App\Rules\recaptcha;
 
 class CustomAuthController extends Controller
 {
+
+    // public function Productitem(Request $request)
+    // {
+    //     $products = Product::orderBy('id' , 'ASC')->get();
+    //     // return response()->json([
+    //     //     'status' => $products
+    //     //  ]);
+    //     foreach ($request->all() as $key => $value) {
+    //         $key = $value;
+    //     }
+       
+    //     return $key;
+    // }
+
     public function register()
     {
         if(Auth()->check() == true){

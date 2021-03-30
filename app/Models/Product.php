@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\ProductAttributeValues;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ['title' , 'description' , 'price' , 'inventory' , 'view_count'];
+    protected $fillable = ['title' , 'description' , 'price' , 'inventory' , 'view_count' , 'image'];
 
     public function comments()
     {
@@ -19,11 +20,18 @@ class Product extends Model
         return $this->belongsToMany(Category::class);
     }
 
-    public function attributes()
-    {
-        return $this->belongsToMany(Attribute::class)->withPivot(['value_id']);
-    }
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    public function galleries()
+    {
+        return $this->hasMany(Gallery::class);
+    }
+
+    public function attributes()
+    {
+        return $this->belongsToMany(Attribute::class)->using(ProductAttributeValues::class)->withPivot(['value_id']);
+        
     }
 }

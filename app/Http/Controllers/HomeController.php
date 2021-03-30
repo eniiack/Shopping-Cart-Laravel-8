@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\Role;
 use App\Models\User;
@@ -9,17 +10,37 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use App\Rules\recaptcha;
+use Illuminate\Support\Facades\URL;
+
 class HomeController extends Controller
 {
 
     public function constant()
     {
+
         $this->middleware('auth');
     }
 
+   
+    public function shop($category)
+    {
+        $product = Category::where("name" , $category)->first();
+        $products = $product->products;
+        return view('shop' , compact('products'));
+    }
 
     public function index()
     {
+        // $product = Product::find(33);
+        // return $product->attributes;
+        // foreach ($product->attributes as $role) {
+        //    return $role->pivot->value;
+        // }
+    //   return  $product->attributes[0]->pivot->value;
+
+        // foreach ($product->roles as $role) {
+        //     echo $role->pivot->created_at;
+        // }
         // Auth::loginUsingId(6);
         // $user = User::find(8);
         
@@ -41,8 +62,12 @@ class HomeController extends Controller
     // $users = $users->paginate(20);
     // $role = Role::find(1);
     // if(Gate::allows('edit-user')){
-        $products = Product::latest()->paginate(12);
-        return view('index', compact('products'));
+    //   return  URL::temporarySignedRoute('download.file' , now()->addMinutes('30') ,['path' => '/files/images (1).jpg']);
+        $products = Product::orderBy('id' , "ASC" )->paginate(12);
+        $popular = Product::orderBy('view_count' , "DESC" )->limit(12)->get();
+        $categories = Category::all();
+        return view('index', compact(['products','categories','popular']));
+        
     // }
     // abort(403);
 
@@ -50,11 +75,17 @@ class HomeController extends Controller
    
     }
 
-    public function product($title)
+    public function product($title )
     {
         $product = Product::where("title" , $title)->first();
+        $category = $product->categories->pluck('id');
+        $pp = $product->categories;
+        $productCat = Category::whereIn('id', $category)
+        ->get();
+        $products = Category::whereIn("id" , $category)->get();
+        // return $products  ;
         if($product != null){
-            return view('product' , compact("product"));
+            return view('product' , compact(["product","products"]));
         }
         abort(404);
     }

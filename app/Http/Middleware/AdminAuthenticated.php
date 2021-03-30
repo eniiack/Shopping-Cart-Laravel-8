@@ -18,13 +18,13 @@ class AdminAuthenticated
     public function handle(Request $request, Closure $next)
     {
         if($request->user()){
-        if($request->user()->isSuperuser() || $request->user()->isStaff()){
-            if($request->session()->has('admin')){
-            return $next($request);
-        }else{
-            return redirect('admin/login');
+            if($request->user()->isSuperuser() || $request->user()->isStaff()){
+                if($request->session()->has('admin')){
+                return $next($request);
+            }else{
+                return redirect('admin/login');
 
-        }
+            }
         }
     }
         return redirect('admin/login');

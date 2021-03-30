@@ -242,5 +242,9 @@
 <script src="/js/owl.carousel.min.js"></script>
 <!--main----------------------------------------->
 <script src="/js/main.js"></script>
-
+<script src="assets/js/owl.carousel.min.js"></script>
+<!--nouislider----------------------------------->
+<script src="assets/js/nouislider.min.js"></script>
+<!--wNumb---------------------------------------->
+<script src="assets/js/wNumb.js"></script>
 </html>

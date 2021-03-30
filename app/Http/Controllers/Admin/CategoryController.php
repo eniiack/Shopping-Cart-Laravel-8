@@ -38,20 +38,49 @@ class CategoryController extends Controller
      */
     public function store(Request $request , Category $category)
     {
-
         if($request->parent) {
             $request->validate([
                'parent' => 'exists:categories,id'
             ]);
+            $img = "null";
+            Category::create([
+                'name' => $request->name,
+                'parent' => $request->parent ?? 0 ,
+            'image' => $img  
+
+            ]);
+        }
+        else{
+        $request->validate([
+            'name' => ['required', 'string', 'max:255' , 'unique:App\Models\Category,name'],
+            'image' => ['required']
+        ]);
+        
+        $file = $request->file('image');
+        $fileName = Category::where('image' , '/images/category/'.$file->getClientOriginalName() )->first();
+        if(! is_null($fileName)){
+            $fileNewName = rand(1,100000).$file->getClientOriginalName();
+        $file->move(public_path('/images/category/') ,$fileNewName );
+        $img = '/images/category/'. $fileNewName;
+
+        }
+        else{
+            $file->move(public_path('/images/category/') ,$file->getClientOriginalName() );
+            $img = '/images/category/' . $file->getClientOriginalName();
+
         }
 
-        $request->validate([
-            'name' => ['required', 'string', 'max:255' , 'unique:App\Models\Category,name']
-        ]);
+
+       
+
+      
+        
         Category::create([
             'name' => $request->name,
-            'parent' => $request->parent ?? 0
+            'parent' => $request->parent ?? 0 ,
+            'image' => $img  
         ]);
+        }
         alert()->success('با موفقیت ساخته شد', 'موفقیت');
         return redirect(route('admin.categories.index'));
     }

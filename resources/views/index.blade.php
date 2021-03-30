@@ -70,9 +70,11 @@
                 <div class="product-carousel owl-carousel owl-theme owl-rtl owl-loaded owl-drag">
                     <div class="owl-stage-outer">
                         <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 2234px;">
+                        @foreach($popular as $key => $item)
+                        @if(! $key >= 5)
                             <div class="owl-item active" style="width: 309.083px; margin-left: 10px;">
                                 <div class="item">
-                                    <a href="#">
+                                    <a href="{{ route('show_product', ['product' => $item->title]) }}">
                                         <div class="stars-plp">
                                             <span class="mdi mdi-star active"></span>
                                             <span class="mdi mdi-star active"></span>
@@ -80,95 +82,24 @@
                                             <span class="mdi mdi-star active"></span>
                                             <span class="mdi mdi-star active"></span>
                                         </div>
-                                        <img src="/images/slider-product/tev-1.jpg" class="img-fluid" alt="">
+                                        <img src="{{ $item->image }}" class="img-fluid" alt="">
                                     </a>
                                     <h2 class="post-title">
-                                        <a href="#">
-                                            تلویزیون ال ای دی هوشمند سامسونگ مدل 82NU8900 سایز 82 اینچ
+                                        <a href="{{ route('show_product', ['product' => $item->title]) }}">
+                                           {{$item->title}}
                                         </a>
                                     </h2>
                                     <div class="price">
                                         <ins>
-                                            <span>۳,۳۹۵,۰۰۰<span>تومان</span></span>
+                                            <span>{{number_format($item->price)}}<span>تومان</span></span>
                                         </ins>
                                     </div>
                                 </div>
                             </div>
-                            <div class="owl-item active" style="width: 309.083px; margin-left: 10px;">
-                                <div class="item">
-                                    <a href="#">
-                                        <div class="stars-plp">
-                                            <span class="mdi mdi-star active"></span>
-                                            <span class="mdi mdi-star active"></span>
-                                            <span class="mdi mdi-star active"></span>
-                                            <span class="mdi mdi-star active"></span>
-                                            <span class="mdi mdi-star active"></span>
-                                        </div>
-                                        <img src="/images/slider-product/tev-2.jpg" class="img-fluid" alt="">
-                                    </a>
-                                    <h2 class="post-title">
-                                        <a href="#">
-                                            تلویزیون ال ای دی هوشمند ایکس ویژن مدل 55XT515 سایز 55 اینچ
-                                        </a>
-                                    </h2>
-                                    <div class="price">
-                                        <ins>
-                                            <span>۳,۳۹۵,۰۰۰<span>تومان</span></span>
-                                        </ins>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item active" style="width: 309.083px; margin-left: 10px;">
-                                <div class="item">
-                                    <a href="#">
-                                        <div class="stars-plp">
-                                            <span class="mdi mdi-star active"></span>
-                                            <span class="mdi mdi-star active"></span>
-                                            <span class="mdi mdi-star active"></span>
-                                            <span class="mdi mdi-star active"></span>
-                                            <span class="mdi mdi-star active"></span>
-                                        </div>
-                                        <img src="/images/slider-product/tev-3.jpg" class="img-fluid" alt="">
-                                    </a>
-                                    <h2 class="post-title">
-                                        <a href="#">
-                                            تلویزیون ال ای دی هوشمند مجیک تی وی مدل MT65D2400 سایز 65 اینچ
-                                        </a>
-                                    </h2>
-                                    <div class="price">
-                                        <ins>
-                                            <span>۳,۳۹۵,۰۰۰<span>تومان</span></span>
-                                        </ins>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item active" style="width: 309.083px; margin-left: 10px;">
-                                <div class="item">
-                                    <a href="#">
-                                        <div class="stars-plp">
-                                            <span class="mdi mdi-star active"></span>
-                                            <span class="mdi mdi-star active"></span>
-                                            <span class="mdi mdi-star active"></span>
-                                            <span class="mdi mdi-star active"></span>
-                                            <span class="mdi mdi-star active"></span>
-                                        </div>
-                                        <img src="/images/slider-product/tev-4.jpg" class="img-fluid" alt="">
-                                    </a>
-                                    <h2 class="post-title">
-                                        <a href="#">
-                                            تلویزیون ال ای دی ال جی مدل 43LJ52100 سایز 43 اینچ
-                                        </a>
-                                    </h2>
-                                    <div class="price">
-                                        <ins>
-                                            <span>۳,۳۹۵,۰۰۰<span>تومان</span></span>
-                                        </ins>
-                                    </div>
-                                </div>
-                            </div>
+                             @else
                             <div class="owl-item" style="width: 309.083px; margin-left: 10px;">
                                 <div class="item">
-                                    <a href="#">
+                                    <a href="{{ route('show_product', ['product' => $item->title]) }}">
                                         <div class="stars-plp">
                                             <span class="mdi mdi-star active"></span>
                                             <span class="mdi mdi-star active"></span>
@@ -176,68 +107,23 @@
                                             <span class="mdi mdi-star active"></span>
                                             <span class="mdi mdi-star active"></span>
                                         </div>
-                                        <img src="/images/slider-product/tev-5.jpg" class="img-fluid" alt="">
+                                        <img src="{{ $item->image }}" class="img-fluid" alt="">
                                     </a>
                                     <h2 class="post-title">
-                                        <a href="#">
-                                            تلویزیون ال ای دی هوشمند ایکس ویژن مدل 49XTU725 سایز 49 اینچ
+                                        <a href="{{ route('show_product', ['product' => $item->title]) }}">
+                                           {{$item->title}}
                                         </a>
                                     </h2>
                                     <div class="price">
                                         <ins>
-                                            <span>۳,۳۹۵,۰۰۰<span>تومان</span></span>
+                                            <span>{{number_format($item->price)}}<span>تومان</span></span>
                                         </ins>
                                     </div>
                                 </div>
                             </div>
-                            <div class="owl-item" style="width: 309.083px; margin-left: 10px;">
-                                <div class="item">
-                                    <a href="#">
-                                        <div class="stars-plp">
-                                            <span class="mdi mdi-star active"></span>
-                                            <span class="mdi mdi-star active"></span>
-                                            <span class="mdi mdi-star active"></span>
-                                            <span class="mdi mdi-star active"></span>
-                                            <span class="mdi mdi-star active"></span>
-                                        </div>
-                                        <img src="/images/slider-product/tev-6.jpg" class="img-fluid" alt="">
-                                    </a>
-                                    <h2 class="post-title">
-                                        <a href="#">
-                                            تلویزیون ال ای دی هوشمند ایکس ویژن مدل 43XT725 سایز 43 اینچ
-                                        </a>
-                                    </h2>
-                                    <div class="price">
-                                        <ins>
-                                            <span>۳,۳۹۵,۰۰۰<span>تومان</span></span>
-                                        </ins>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item" style="width: 309.083px; margin-left: 10px;">
-                                <div class="item">
-                                    <a href="#">
-                                        <div class="stars-plp">
-                                            <span class="mdi mdi-star active"></span>
-                                            <span class="mdi mdi-star active"></span>
-                                            <span class="mdi mdi-star active"></span>
-                                            <span class="mdi mdi-star active"></span>
-                                            <span class="mdi mdi-star active"></span>
-                                        </div>
-                                        <img src="/images/slider-product/tev-7.jpg" class="img-fluid" alt="">
-                                    </a>
-                                    <h2 class="post-title">
-                                        <a href="#">
-                                            تلویزیون ال ای دی هوشمند ایکس ویژن مدل 55XTU725 سایز 55 اینچ
-                                        </a>
-                                    </h2>
-                                    <div class="price">
-                                        <ins>
-                                            <span>۳,۳۹۵,۰۰۰<span>تومان</span></span>
-                                        </ins>
-                                    </div>
-                                </div>
-                            </div>
+                            @endif
+                            @endforeach
+                          
                         </div>
                     </div>
                     <div class="owl-nav"><button type="button" role="presentation" class="owl-prev disabled"><i class="fa fa-angle-right"></i></button><button type="button" role="presentation" class="owl-next"><i class="fa fa-angle-left"></i></button></div>
@@ -363,51 +249,13 @@
             <span class="promotion-categories-title">بیش از ۱،۵۰۰،۰۰۰ کالا در دسته‌بندی‌های مختلف</span>
             <div class="category-container">
                 <div class="promotion-categories">
-                    <a href="#" class="promotion-category">
-                        <img src="/images/category/macbook.png">
-                        <div class="promotion-category-name">کالای دیجیتال</div>
+                    @foreach($categories as $item)
+                    <a href="{{ route('shop', ['category' => $item->name]) }}" class="promotion-category">
+                        <img src="{{$item->image}}">
+                        <div class="promotion-category-name">{{$item->name}}</div>
                         <div class="promotion-category-quantity">۲۰۳۰۰۰ کالا</div>
                     </a>
-                    <a href="#" class="promotion-category">
-                        <img src="/images/category/heart-shape-outline-with-lifeline.png">
-                        <div class="promotion-category-name">لوازم آرایشی</div>
-                        <div class="promotion-category-quantity">۶۰۰۰۰ کالا</div>
-                    </a>
-                    <a href="#" class="promotion-category">
-                        <img src="/images/category/support.png">
-                        <div class="promotion-category-name">خودرو، ابزار و اداری</div>
-                        <div class="promotion-category-quantity">۷۲۰۰۰ کالا</div>
-                    </a>
-                    <a href="#" class="promotion-category">
-                        <img src="/images/category/dress.png">
-                        <div class="promotion-category-name">مد و پوشاک</div>
-                        <div class="promotion-category-quantity">۲۶۱۰۰۰ کالا</div>
-                    </a>
-                    <a href="#" class="promotion-category">
-                        <img src="/images/category/sofa.png">
-                        <div class="promotion-category-name">خانه و آشپزخانه</div>
-                        <div class="promotion-category-quantity">۲۷۷۰۰۰ کالا</div>
-                    </a>
-                    <a href="#" class="promotion-category">
-                        <img src="/images/category/pen.png">
-                        <div class="promotion-category-name">کتاب، لوازم تحریر و هنر</div>
-                        <div class="promotion-category-quantity">۱۰۴۰۰۰ کالا</div>
-                    </a>
-                    <a href="#" class="promotion-category">
-                        <img src="/images/category/baby.png">
-                        <div class="promotion-category-name">اسباب بازی، کودک و نوزاد</div>
-                        <div class="promotion-category-quantity">۳۷۰۰۰ کالا</div>
-                    </a>
-                    <a href="#" class="promotion-category">
-                        <img src="/images/category/sports-and-competition.png">
-                        <div class="promotion-category-name">ورزش و سفر</div>
-                        <div class="promotion-category-quantity">۱۹۰۰۰ کالا</div>
-                    </a>
-                    <a href="#" class="promotion-category">
-                        <img src="/images/category/birthday-and-party.png">
-                        <div class="promotion-category-name">خوردنی و آشامیدنی</div>
-                        <div class="promotion-category-quantity">۲۷۰۰۰ کالا</div>
-                    </a>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -481,174 +329,59 @@
                 <div class="product-carousel owl-carousel owl-theme owl-rtl owl-loaded owl-drag">
                     <div class="owl-stage-outer">
                         <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 2234px;">
+                            @foreach($popular as $key => $item)
+                        @if(! $key >= 5)
                             <div class="owl-item active" style="width: 309.083px; margin-left: 10px;">
                                 <div class="item">
-                                    <a href="#">
-                                        <img src="/images/slider-product/tev-1.jpg" class="img-fluid" alt="">
+                                    <a href="{{ route('show_product', ['product' => $item->title]) }}">
+                                        <div class="stars-plp">
+                                            <span class="mdi mdi-star active"></span>
+                                            <span class="mdi mdi-star active"></span>
+                                            <span class="mdi mdi-star active"></span>
+                                            <span class="mdi mdi-star active"></span>
+                                            <span class="mdi mdi-star active"></span>
+                                        </div>
+                                        <img src="{{ $item->image }}" class="img-fluid" alt="">
                                     </a>
                                     <h2 class="post-title">
-                                        <a href="#">
-                                            تلویزیون ال ای دی هوشمند سامسونگ مدل 82NU8900 سایز 82 اینچ
+                                        <a href="{{ route('show_product', ['product' => $item->title]) }}">
+                                           {{$item->title}}
                                         </a>
                                     </h2>
                                     <div class="price">
                                         <ins>
-                                            <span>۳,۳۹۵,۰۰۰<span>تومان</span></span>
-                                            <div class="stars-plp">
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                            </div>
+                                            <span>{{number_format($item->price)}}<span>تومان</span></span>
                                         </ins>
                                     </div>
                                 </div>
                             </div>
-                            <div class="owl-item active" style="width: 309.083px; margin-left: 10px;">
-                                <div class="item">
-                                    <a href="#">
-                                        <img src="/images/slider-product/tev-2.jpg" class="img-fluid" alt="">
-                                    </a>
-                                    <h2 class="post-title">
-                                        <a href="#">
-                                            تلویزیون ال ای دی هوشمند ایکس ویژن مدل 55XT515 سایز 55 اینچ
-                                        </a>
-                                    </h2>
-                                    <div class="price">
-                                        <ins>
-                                            <span>۳,۳۹۵,۰۰۰<span>تومان</span></span>
-                                            <div class="stars-plp">
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star"></span>
-                                            </div>
-                                        </ins>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item active" style="width: 309.083px; margin-left: 10px;">
-                                <div class="item">
-                                    <a href="#">
-                                        <img src="/images/slider-product/tev-3.jpg" class="img-fluid" alt="">
-                                    </a>
-                                    <h2 class="post-title">
-                                        <a href="#">
-                                            تلویزیون ال ای دی هوشمند مجیک تی وی مدل MT65D2400 سایز 65 اینچ
-                                        </a>
-                                    </h2>
-                                    <div class="price">
-                                        <ins>
-                                            <span>۳,۳۹۵,۰۰۰<span>تومان</span></span>
-                                            <div class="stars-plp">
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                            </div>
-                                        </ins>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item active" style="width: 309.083px; margin-left: 10px;">
-                                <div class="item">
-                                    <a href="#">
-                                        <img src="/images/slider-product/tev-4.jpg" class="img-fluid" alt="">
-                                    </a>
-                                    <h2 class="post-title">
-                                        <a href="#">
-                                            تلویزیون ال ای دی ال جی مدل 43LJ52100 سایز 43 اینچ
-                                        </a>
-                                    </h2>
-                                    <div class="price">
-                                        <ins>
-                                            <span>۳,۳۹۵,۰۰۰<span>تومان</span></span>
-                                            <div class="stars-plp">
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star"></span>
-                                                <span class="mdi mdi-star"></span>
-                                            </div>
-                                        </ins>
-                                    </div>
-                                </div>
-                            </div>
+                             @else
                             <div class="owl-item" style="width: 309.083px; margin-left: 10px;">
                                 <div class="item">
-                                    <a href="#">
-                                        <img src="/images/slider-product/tev-5.jpg" class="img-fluid" alt="">
+                                    <a href="{{ route('show_product', ['product' => $item->title]) }}">
+                                        <div class="stars-plp">
+                                            <span class="mdi mdi-star active"></span>
+                                            <span class="mdi mdi-star active"></span>
+                                            <span class="mdi mdi-star active"></span>
+                                            <span class="mdi mdi-star active"></span>
+                                            <span class="mdi mdi-star active"></span>
+                                        </div>
+                                        <img src="{{ $item->image }}" class="img-fluid" alt="">
                                     </a>
                                     <h2 class="post-title">
-                                        <a href="#">
-                                            تلویزیون ال ای دی هوشمند ایکس ویژن مدل 49XTU725 سایز 49 اینچ
+                                        <a href="{{ route('show_product', ['product' => $item->title]) }}">
+                                           {{$item->title}}
                                         </a>
                                     </h2>
                                     <div class="price">
                                         <ins>
-                                            <span>۳,۳۹۵,۰۰۰<span>تومان</span></span>
-                                            <div class="stars-plp">
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star"></span>
-                                                <span class="mdi mdi-star"></span>
-                                            </div>
+                                            <span>{{number_format($item->price)}}<span>تومان</span></span>
                                         </ins>
                                     </div>
                                 </div>
                             </div>
-                            <div class="owl-item" style="width: 309.083px; margin-left: 10px;">
-                                <div class="item">
-                                    <a href="#">
-                                        <img src="/images/slider-product/tev-6.jpg" class="img-fluid" alt="">
-                                    </a>
-                                    <h2 class="post-title">
-                                        <a href="#">
-                                            تلویزیون ال ای دی هوشمند ایکس ویژن مدل 43XT725 سایز 43 اینچ
-                                        </a>
-                                    </h2>
-                                    <div class="price">
-                                        <ins>
-                                            <span>۳,۳۹۵,۰۰۰<span>تومان</span></span>
-                                            <div class="stars-plp">
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star"></span>
-                                            </div>
-                                        </ins>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item" style="width: 309.083px; margin-left: 10px;">
-                                <div class="item">
-                                    <a href="#">
-                                        <img src="/images/slider-product/tev-7.jpg" class="img-fluid" alt="">
-                                    </a>
-                                    <h2 class="post-title">
-                                        <a href="#">
-                                            تلویزیون ال ای دی هوشمند ایکس ویژن مدل 55XTU725 سایز 55 اینچ
-                                        </a>
-                                    </h2>
-                                    <div class="price">
-                                        <ins>
-                                            <span>۳,۳۹۵,۰۰۰<span>تومان</span></span>
-                                            <div class="stars-plp">
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star"></span>
-                                            </div>
-                                        </ins>
-                                    </div>
-                                </div>
-                            </div>
+                            @endif
+                            @endforeach
                         </div>
                     </div>
                     <div class="owl-nav"><button type="button" role="presentation" class="owl-prev disabled"><i class="fa fa-angle-right"></i></button><button type="button" role="presentation" class="owl-next"><i class="fa fa-angle-left"></i></button></div>
@@ -669,9 +402,7 @@
                         <li class="nav-item nav-active">
                             <a href="#" class="nav-link" data-toggle="tab">همه</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="tab">ویژه</a>
-                        </li>
+                      
                         <li class="nav-item">
                             <a href="#" class="nav-link" data-toggle="tab">جدید ترین ها</a>
                         </li>
@@ -697,7 +428,7 @@
                                                         <span class="mdi mdi-star active"></span>
                                                         <span class="mdi mdi-star"></span>
                                                     </div>
-                                                    <img src="/images/content-product/1.jpg">
+                                                    <img src="{{$product->image}}">
                                                 </a>
                                             </div>
                                             <div class="card-vertical-product-content">
@@ -728,94 +459,16 @@
                                         </div>
                                     </div>
                                     @endforeach
+                                </a>
+                            </li>
+                         
+                            <li class="item-content">
+                                <a href="#" class="link-content">
+                                    @foreach(\App\Models\Product::orderBy('id' , 'DESC')->limit(12)->get() as $product)
                                     <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
                                         <div class="product-vertical">
                                             <div class="vertical-product-thumb">
-                                                <a href="#">
-                                                    <div class="stars-plp">
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star"></span>
-                                                        <span class="mdi mdi-star"></span>
-                                                    </div>
-                                                    <img src="/images/content-product/2.jpg">
-                                                </a>
-                                            </div>
-                                            <div class="card-vertical-product-content">
-                                                <div class="card-vertical-product-title">
-                                                    <a href="#">
-                                                        ساعت هوشمند جی-تب مدل W101 Hero
-                                                    </a>
-                                                </div>
-                                                <div class="card-vertical-product-price">
-                                                    ۱۲۷,۰۰۰
-                                                    <span class="price-currency">تومان</span>
-                                                </div>
-                                                <div class="product-actions-secondary">
-                                                    <div class="heart" title="افزودن به لیست علاقه مندی">
-                                                        <span class="mdi mdi-heart"></span>
-                                                    </div>
-                                                    <div class="product-introduction-cart" title="افزودن به سبد خرید">
-                                                        <span class="c-introduction">
-                                                            +
-                                                        </span>
-
-                                                    </div>
-                                                    <div class="comparison" title="افزودن برای مقایسه">
-                                                        <i class="fa fa-random" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
-                                        <div class="product-vertical">
-                                            <div class="vertical-product-thumb">
-                                                <a href="#">
-                                                    <div class="stars-plp">
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                    </div>
-                                                    <img src="/images/content-product/3.jpg">
-                                                </a>
-                                            </div>
-                                            <div class="card-vertical-product-content">
-                                                <div class="card-vertical-product-title">
-                                                    <a href="#">
-                                                        ساعت هوشمند جی-تب مدل W101 Hero
-                                                    </a>
-                                                </div>
-                                                <div class="card-vertical-product-price">
-                                                    ۱۲۷,۰۰۰
-                                                    <span class="price-currency">تومان</span>
-                                                </div>
-                                                <div class="product-actions-secondary">
-                                                    <div class="heart" title="افزودن به لیست علاقه مندی">
-                                                        <span class="mdi mdi-heart"></span>
-                                                    </div>
-                                                    <div class="product-introduction-cart" title="افزودن به سبد خرید">
-                                                        <span class="c-introduction">
-                                                            +
-                                                        </span>
-
-                                                    </div>
-                                                    <div class="comparison" title="افزودن برای مقایسه">
-                                                        <i class="fa fa-random" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
-                                        <div class="product-vertical">
-                                            <div class="vertical-product-thumb">
-                                                <a href="#">
+                                                <a href="{{ route('show_product', ['product' => $product->title]) }}">
                                                     <div class="stars-plp">
                                                         <span class="mdi mdi-star active"></span>
                                                         <span class="mdi mdi-star active"></span>
@@ -823,17 +476,17 @@
                                                         <span class="mdi mdi-star active"></span>
                                                         <span class="mdi mdi-star"></span>
                                                     </div>
-                                                    <img src="/images/content-product/4.jpg">
+                                                    <img src="{{$product->image}}">
                                                 </a>
                                             </div>
                                             <div class="card-vertical-product-content">
                                                 <div class="card-vertical-product-title">
                                                     <a href="#">
-                                                        ساعت هوشمند جی-تب مدل W101 Hero
+                                                       {{$product->title}}
                                                     </a>
                                                 </div>
                                                 <div class="card-vertical-product-price">
-                                                    ۱۲۷,۰۰۰
+                                                    {{number_format($product->price)}}
                                                     <span class="price-currency">تومان</span>
                                                 </div>
                                                 <div class="product-actions-secondary">
@@ -853,266 +506,17 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endforeach
 
-                                    <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
-                                        <div class="product-vertical">
-                                            <div class="vertical-product-thumb">
-                                                <a href="#">
-                                                    <div class="stars-plp">
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                    </div>
-                                                    <img src="/images/content-product/1.jpg">
-                                                </a>
-                                            </div>
-                                            <div class="card-vertical-product-content">
-                                                <div class="card-vertical-product-title">
-                                                    <a href="#">
-                                                        ساعت هوشمند جی-تب مدل W101 Hero
-                                                    </a>
-                                                </div>
-                                                <div class="card-vertical-product-price">
-                                                    ۱۲۷,۰۰۰
-                                                    <span class="price-currency">تومان</span>
-                                                </div>
-                                                <div class="product-actions-secondary">
-                                                    <div class="heart" title="افزودن به لیست علاقه مندی">
-                                                        <span class="mdi mdi-heart"></span>
-                                                    </div>
-                                                    <div class="product-introduction-cart" title="افزودن به سبد خرید">
-                                                        <span class="c-introduction">
-                                                            +
-                                                        </span>
-
-                                                    </div>
-                                                    <div class="comparison" title="افزودن برای مقایسه">
-                                                        <i class="fa fa-random" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
-                                        <div class="product-vertical">
-                                            <div class="vertical-product-thumb">
-                                                <a href="#">
-                                                    <div class="stars-plp">
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star"></span>
-                                                        <span class="mdi mdi-star"></span>
-                                                    </div>
-                                                    <img src="/images/content-product/2.jpg">
-                                                </a>
-                                            </div>
-                                            <div class="card-vertical-product-content">
-                                                <div class="card-vertical-product-title">
-                                                    <a href="#">
-                                                        ساعت هوشمند جی-تب مدل W101 Hero
-                                                    </a>
-                                                </div>
-                                                <div class="card-vertical-product-price">
-                                                    ۱۲۷,۰۰۰
-                                                    <span class="price-currency">تومان</span>
-                                                </div>
-                                                <div class="product-actions-secondary">
-                                                    <div class="heart" title="افزودن به لیست علاقه مندی">
-                                                        <span class="mdi mdi-heart"></span>
-                                                    </div>
-                                                    <div class="product-introduction-cart" title="افزودن به سبد خرید">
-                                                        <span class="c-introduction">
-                                                            +
-                                                        </span>
-
-                                                    </div>
-                                                    <div class="comparison" title="افزودن برای مقایسه">
-                                                        <i class="fa fa-random" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
-                                        <div class="product-vertical">
-                                            <div class="vertical-product-thumb">
-                                                <a href="#">
-                                                    <div class="stars-plp">
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star"></span>
-                                                    </div>
-                                                    <img src="/images/content-product/3.jpg">
-                                                </a>
-                                            </div>
-                                            <div class="card-vertical-product-content">
-                                                <div class="card-vertical-product-title">
-                                                    <a href="#">
-                                                        ساعت هوشمند جی-تب مدل W101 Hero
-                                                    </a>
-                                                </div>
-                                                <div class="card-vertical-product-price">
-                                                    ۱۲۷,۰۰۰
-                                                    <span class="price-currency">تومان</span>
-                                                </div>
-                                                <div class="product-actions-secondary">
-                                                    <div class="heart" title="افزودن به لیست علاقه مندی">
-                                                        <span class="mdi mdi-heart"></span>
-                                                    </div>
-                                                    <div class="product-introduction-cart" title="افزودن به سبد خرید">
-                                                        <span class="c-introduction">
-                                                            +
-                                                        </span>
-
-                                                    </div>
-                                                    <div class="comparison" title="افزودن برای مقایسه">
-                                                        <i class="fa fa-random" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
-                                        <div class="product-vertical">
-                                            <div class="vertical-product-thumb">
-                                                <a href="#">
-                                                    <div class="stars-plp">
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                    </div>
-                                                    <img src="/images/content-product/4.jpg">
-                                                </a>
-                                            </div>
-                                            <div class="card-vertical-product-content">
-                                                <div class="card-vertical-product-title">
-                                                    <a href="#">
-                                                        ساعت هوشمند جی-تب مدل W101 Hero
-                                                    </a>
-                                                </div>
-                                                <div class="card-vertical-product-price">
-                                                    ۱۲۷,۰۰۰
-                                                    <span class="price-currency">تومان</span>
-                                                </div>
-                                                <div class="product-actions-secondary">
-                                                    <div class="heart" title="افزودن به لیست علاقه مندی">
-                                                        <span class="mdi mdi-heart"></span>
-                                                    </div>
-                                                    <div class="product-introduction-cart" title="افزودن به سبد خرید">
-                                                        <span class="c-introduction">
-                                                            +
-                                                        </span>
-
-                                                    </div>
-                                                    <div class="comparison" title="افزودن برای مقایسه">
-                                                        <i class="fa fa-random" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
-                                        <div class="product-vertical">
-                                            <div class="vertical-product-thumb">
-                                                <a href="#">
-                                                    <div class="stars-plp">
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star"></span>
-                                                    </div>
-                                                    <img src="/images/content-product/1.jpg">
-                                                </a>
-                                            </div>
-                                            <div class="card-vertical-product-content">
-                                                <div class="card-vertical-product-title">
-                                                    <a href="#">
-                                                        ساعت هوشمند جی-تب مدل W101 Hero
-                                                    </a>
-                                                </div>
-                                                <div class="card-vertical-product-price">
-                                                    ۱۲۷,۰۰۰
-                                                    <span class="price-currency">تومان</span>
-                                                </div>
-                                                <div class="product-actions-secondary">
-                                                    <div class="heart" title="افزودن به لیست علاقه مندی">
-                                                        <span class="mdi mdi-heart"></span>
-                                                    </div>
-                                                    <div class="product-introduction-cart" title="افزودن به سبد خرید">
-                                                        <span class="c-introduction">
-                                                            +
-                                                        </span>
-
-                                                    </div>
-                                                    <div class="comparison" title="افزودن برای مقایسه">
-                                                        <i class="fa fa-random" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
-                                        <div class="product-vertical">
-                                            <div class="vertical-product-thumb">
-                                                <a href="#">
-                                                    <div class="stars-plp">
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star"></span>
-                                                    </div>
-                                                    <img src="/images/content-product/2.jpg">
-                                                </a>
-                                            </div>
-                                            <div class="card-vertical-product-content">
-                                                <div class="card-vertical-product-title">
-                                                    <a href="#">
-                                                        ساعت هوشمند جی-تب مدل W101 Hero
-                                                    </a>
-                                                </div>
-                                                <div class="card-vertical-product-price">
-                                                    ۱۲۷,۰۰۰
-                                                    <span class="price-currency">تومان</span>
-                                                </div>
-                                                <div class="product-actions-secondary">
-                                                    <div class="heart" title="افزودن به لیست علاقه مندی">
-                                                        <span class="mdi mdi-heart"></span>
-                                                    </div>
-                                                    <div class="product-introduction-cart" title="افزودن به سبد خرید">
-                                                        <span class="c-introduction">
-                                                            +
-                                                        </span>
-
-                                                    </div>
-                                                    <div class="comparison" title="افزودن برای مقایسه">
-                                                        <i class="fa fa-random" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </a>
                             </li>
                             <li class="item-content">
                                 <a href="#" class="link-content">
+                                    @foreach($popular as $product)
                                     <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
                                         <div class="product-vertical">
                                             <div class="vertical-product-thumb">
-                                                <a href="#">
+                                                <a href="{{ route('show_product', ['product' => $product->title]) }}">
                                                     <div class="stars-plp">
                                                         <span class="mdi mdi-star active"></span>
                                                         <span class="mdi mdi-star active"></span>
@@ -1120,17 +524,17 @@
                                                         <span class="mdi mdi-star active"></span>
                                                         <span class="mdi mdi-star"></span>
                                                     </div>
-                                                    <img src="/images/content-product/1.jpg">
+                                                    <img src="{{$product->image}}">
                                                 </a>
                                             </div>
                                             <div class="card-vertical-product-content">
                                                 <div class="card-vertical-product-title">
                                                     <a href="#">
-                                                        ساعت هوشمند جی-تب مدل W101 Hero
+                                                       {{$product->title}}
                                                     </a>
                                                 </div>
                                                 <div class="card-vertical-product-price">
-                                                    ۱۲۷,۰۰۰
+                                                    {{number_format($product->price)}}
                                                     <span class="price-currency">تومان</span>
                                                 </div>
                                                 <div class="product-actions-secondary">
@@ -1150,641 +554,9 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endforeach
 
-                                    <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
-                                        <div class="product-vertical">
-                                            <div class="vertical-product-thumb">
-                                                <a href="#">
-                                                    <div class="stars-plp">
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star"></span>
-                                                    </div>
-                                                    <img src="/images/content-product/2.jpg">
-                                                </a>
-                                            </div>
-                                            <div class="card-vertical-product-content">
-                                                <div class="card-vertical-product-title">
-                                                    <a href="#">
-                                                        ساعت هوشمند جی-تب مدل W101 Hero
-                                                    </a>
-                                                </div>
-                                                <div class="card-vertical-product-price">
-                                                    ۱۲۷,۰۰۰
-                                                    <span class="price-currency">تومان</span>
-                                                </div>
-                                                <div class="product-actions-secondary">
-                                                    <div class="heart" title="افزودن به لیست علاقه مندی">
-                                                        <span class="mdi mdi-heart"></span>
-                                                    </div>
-                                                    <div class="product-introduction-cart" title="افزودن به سبد خرید">
-                                                        <span class="c-introduction">
-                                                            +
-                                                        </span>
-
-                                                    </div>
-                                                    <div class="comparison" title="افزودن برای مقایسه">
-                                                        <i class="fa fa-random" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
-                                        <div class="product-vertical">
-                                            <div class="vertical-product-thumb">
-                                                <a href="#">
-                                                    <div class="stars-plp">
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star"></span>
-                                                    </div>
-                                                    <img src="/images/content-product/3.jpg">
-                                                </a>
-                                            </div>
-                                            <div class="card-vertical-product-content">
-                                                <div class="card-vertical-product-title">
-                                                    <a href="#">
-                                                        ساعت هوشمند جی-تب مدل W101 Hero
-                                                    </a>
-                                                </div>
-                                                <div class="card-vertical-product-price">
-                                                    ۱۲۷,۰۰۰
-                                                    <span class="price-currency">تومان</span>
-                                                </div>
-                                                <div class="product-actions-secondary">
-                                                    <div class="heart" title="افزودن به لیست علاقه مندی">
-                                                        <span class="mdi mdi-heart"></span>
-                                                    </div>
-                                                    <div class="product-introduction-cart" title="افزودن به سبد خرید">
-                                                        <span class="c-introduction">
-                                                            +
-                                                        </span>
-
-                                                    </div>
-                                                    <div class="comparison" title="افزودن برای مقایسه">
-                                                        <i class="fa fa-random" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
-                                        <div class="product-vertical">
-                                            <div class="vertical-product-thumb">
-                                                <a href="#">
-                                                    <div class="stars-plp">
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star"></span>
-                                                    </div>
-                                                    <img src="/images/content-product/4.jpg">
-                                                </a>
-                                            </div>
-                                            <div class="card-vertical-product-content">
-                                                <div class="card-vertical-product-title">
-                                                    <a href="#">
-                                                        ساعت هوشمند جی-تب مدل W101 Hero
-                                                    </a>
-                                                </div>
-                                                <div class="card-vertical-product-price">
-                                                    ۱۲۷,۰۰۰
-                                                    <span class="price-currency">تومان</span>
-                                                </div>
-                                                <div class="product-actions-secondary">
-                                                    <div class="heart" title="افزودن به لیست علاقه مندی">
-                                                        <span class="mdi mdi-heart"></span>
-                                                    </div>
-                                                    <div class="product-introduction-cart" title="افزودن به سبد خرید">
-                                                        <span class="c-introduction">
-                                                            +
-                                                        </span>
-
-                                                    </div>
-                                                    <div class="comparison" title="افزودن برای مقایسه">
-                                                        <i class="fa fa-random" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
-                                        <div class="product-vertical">
-                                            <div class="vertical-product-thumb">
-                                                <a href="#">
-                                                    <div class="stars-plp">
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star"></span>
-                                                    </div>
-                                                    <img src="/images/content-product/1.jpg">
-                                                </a>
-                                            </div>
-                                            <div class="card-vertical-product-content">
-                                                <div class="card-vertical-product-title">
-                                                    <a href="#">
-                                                        ساعت هوشمند جی-تب مدل W101 Hero
-                                                    </a>
-                                                </div>
-                                                <div class="card-vertical-product-price">
-                                                    ۱۲۷,۰۰۰
-                                                    <span class="price-currency">تومان</span>
-                                                </div>
-                                                <div class="product-actions-secondary">
-                                                    <div class="heart" title="افزودن به لیست علاقه مندی">
-                                                        <span class="mdi mdi-heart"></span>
-                                                    </div>
-                                                    <div class="product-introduction-cart" title="افزودن به سبد خرید">
-                                                        <span class="c-introduction">
-                                                            +
-                                                        </span>
-
-                                                    </div>
-                                                    <div class="comparison" title="افزودن برای مقایسه">
-                                                        <i class="fa fa-random" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
-                                        <div class="product-vertical">
-                                            <div class="vertical-product-thumb">
-                                                <a href="#">
-                                                    <div class="stars-plp">
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star"></span>
-                                                    </div>
-                                                    <img src="/images/content-product/2.jpg">
-                                                </a>
-                                            </div>
-                                            <div class="card-vertical-product-content">
-                                                <div class="card-vertical-product-title">
-                                                    <a href="#">
-                                                        ساعت هوشمند جی-تب مدل W101 Hero
-                                                    </a>
-                                                </div>
-                                                <div class="card-vertical-product-price">
-                                                    ۱۲۷,۰۰۰
-                                                    <span class="price-currency">تومان</span>
-                                                </div>
-                                                <div class="product-actions-secondary">
-                                                    <div class="heart" title="افزودن به لیست علاقه مندی">
-                                                        <span class="mdi mdi-heart"></span>
-                                                    </div>
-                                                    <div class="product-introduction-cart" title="افزودن به سبد خرید">
-                                                        <span class="c-introduction">
-                                                            +
-                                                        </span>
-
-                                                    </div>
-                                                    <div class="comparison" title="افزودن برای مقایسه">
-                                                        <i class="fa fa-random" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
-                                        <div class="product-vertical">
-                                            <div class="vertical-product-thumb">
-                                                <a href="#">
-                                                    <div class="stars-plp">
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star"></span>
-                                                    </div>
-                                                    <img src="/images/content-product/3.jpg">
-                                                </a>
-                                            </div>
-                                            <div class="card-vertical-product-content">
-                                                <div class="card-vertical-product-title">
-                                                    <a href="#">
-                                                        ساعت هوشمند جی-تب مدل W101 Hero
-                                                    </a>
-                                                </div>
-                                                <div class="card-vertical-product-price">
-                                                    ۱۲۷,۰۰۰
-                                                    <span class="price-currency">تومان</span>
-                                                </div>
-                                                <div class="product-actions-secondary">
-                                                    <div class="heart" title="افزودن به لیست علاقه مندی">
-                                                        <span class="mdi mdi-heart"></span>
-                                                    </div>
-                                                    <div class="product-introduction-cart" title="افزودن به سبد خرید">
-                                                        <span class="c-introduction">
-                                                            +
-                                                        </span>
-
-                                                    </div>
-                                                    <div class="comparison" title="افزودن برای مقایسه">
-                                                        <i class="fa fa-random" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
-                                        <div class="product-vertical">
-                                            <div class="vertical-product-thumb">
-                                                <a href="#">
-                                                    <div class="stars-plp">
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star"></span>
-                                                    </div>
-                                                    <img src="/images/content-product/4.jpg">
-                                                </a>
-                                            </div>
-                                            <div class="card-vertical-product-content">
-                                                <div class="card-vertical-product-title">
-                                                    <a href="#">
-                                                        ساعت هوشمند جی-تب مدل W101 Hero
-                                                    </a>
-                                                </div>
-                                                <div class="card-vertical-product-price">
-                                                    ۱۲۷,۰۰۰
-                                                    <span class="price-currency">تومان</span>
-                                                </div>
-                                                <div class="product-actions-secondary">
-                                                    <div class="heart" title="افزودن به لیست علاقه مندی">
-                                                        <span class="mdi mdi-heart"></span>
-                                                    </div>
-                                                    <div class="product-introduction-cart" title="افزودن به سبد خرید">
-                                                        <span class="c-introduction">
-                                                            +
-                                                        </span>
-
-                                                    </div>
-                                                    <div class="comparison" title="افزودن برای مقایسه">
-                                                        <i class="fa fa-random" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="item-content">
-                                <a href="#" class="link-content">
-                                    <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
-                                        <div class="product-vertical">
-                                            <div class="vertical-product-thumb">
-                                                <a href="#">
-                                                    <div class="stars-plp">
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star"></span>
-                                                    </div>
-                                                    <img src="/images/content-product/1.jpg">
-                                                </a>
-                                            </div>
-                                            <div class="card-vertical-product-content">
-                                                <div class="card-vertical-product-title">
-                                                    <a href="#">
-                                                        ساعت هوشمند جی-تب مدل W101 Hero
-                                                    </a>
-                                                </div>
-                                                <div class="card-vertical-product-price">
-                                                    ۱۲۷,۰۰۰
-                                                    <span class="price-currency">تومان</span>
-                                                </div>
-                                                <div class="product-actions-secondary">
-                                                    <div class="heart" title="افزودن به لیست علاقه مندی">
-                                                        <span class="mdi mdi-heart"></span>
-                                                    </div>
-                                                    <div class="product-introduction-cart" title="افزودن به سبد خرید">
-                                                        <span class="c-introduction">
-                                                            +
-                                                        </span>
-
-                                                    </div>
-                                                    <div class="comparison" title="افزودن برای مقایسه">
-                                                        <i class="fa fa-random" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
-                                        <div class="product-vertical">
-                                            <div class="vertical-product-thumb">
-                                                <a href="#">
-                                                    <div class="stars-plp">
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star"></span>
-                                                    </div>
-                                                    <img src="/images/content-product/2.jpg">
-                                                </a>
-                                            </div>
-                                            <div class="card-vertical-product-content">
-                                                <div class="card-vertical-product-title">
-                                                    <a href="#">
-                                                        ساعت هوشمند جی-تب مدل W101 Hero
-                                                    </a>
-                                                </div>
-                                                <div class="card-vertical-product-price">
-                                                    ۱۲۷,۰۰۰
-                                                    <span class="price-currency">تومان</span>
-                                                </div>
-                                                <div class="product-actions-secondary">
-                                                    <div class="heart" title="افزودن به لیست علاقه مندی">
-                                                        <span class="mdi mdi-heart"></span>
-                                                    </div>
-                                                    <div class="product-introduction-cart" title="افزودن به سبد خرید">
-                                                        <span class="c-introduction">
-                                                            +
-                                                        </span>
-
-                                                    </div>
-                                                    <div class="comparison" title="افزودن برای مقایسه">
-                                                        <i class="fa fa-random" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
-                                        <div class="product-vertical">
-                                            <div class="vertical-product-thumb">
-                                                <a href="#">
-                                                    <div class="stars-plp">
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star"></span>
-                                                    </div>
-                                                    <img src="/images/content-product/3.jpg">
-                                                </a>
-                                            </div>
-                                            <div class="card-vertical-product-content">
-                                                <div class="card-vertical-product-title">
-                                                    <a href="#">
-                                                        ساعت هوشمند جی-تب مدل W101 Hero
-                                                    </a>
-                                                </div>
-                                                <div class="card-vertical-product-price">
-                                                    ۱۲۷,۰۰۰
-                                                    <span class="price-currency">تومان</span>
-                                                </div>
-                                                <div class="product-actions-secondary">
-                                                    <div class="heart" title="افزودن به لیست علاقه مندی">
-                                                        <span class="mdi mdi-heart"></span>
-                                                    </div>
-                                                    <div class="product-introduction-cart" title="افزودن به سبد خرید">
-                                                        <span class="c-introduction">
-                                                            +
-                                                        </span>
-
-                                                    </div>
-                                                    <div class="comparison" title="افزودن برای مقایسه">
-                                                        <i class="fa fa-random" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
-                                        <div class="product-vertical">
-                                            <div class="vertical-product-thumb">
-                                                <a href="#">
-                                                    <div class="stars-plp">
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star"></span>
-                                                    </div>
-                                                    <img src="/images/content-product/4.jpg">
-                                                </a>
-                                            </div>
-                                            <div class="card-vertical-product-content">
-                                                <div class="card-vertical-product-title">
-                                                    <a href="#">
-                                                        ساعت هوشمند جی-تب مدل W101 Hero
-                                                    </a>
-                                                </div>
-                                                <div class="card-vertical-product-price">
-                                                    ۱۲۷,۰۰۰
-                                                    <span class="price-currency">تومان</span>
-                                                </div>
-                                                <div class="product-actions-secondary">
-                                                    <div class="heart" title="افزودن به لیست علاقه مندی">
-                                                        <span class="mdi mdi-heart"></span>
-                                                    </div>
-                                                    <div class="product-introduction-cart" title="افزودن به سبد خرید">
-                                                        <span class="c-introduction">
-                                                            +
-                                                        </span>
-
-                                                    </div>
-                                                    <div class="comparison" title="افزودن برای مقایسه">
-                                                        <i class="fa fa-random" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
-                                        <div class="product-vertical">
-                                            <div class="vertical-product-thumb">
-                                                <a href="#">
-                                                    <div class="stars-plp">
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star"></span>
-                                                    </div>
-                                                    <img src="/images/content-product/1.jpg">
-                                                </a>
-                                            </div>
-                                            <div class="card-vertical-product-content">
-                                                <div class="card-vertical-product-title">
-                                                    <a href="#">
-                                                        ساعت هوشمند جی-تب مدل W101 Hero
-                                                    </a>
-                                                </div>
-                                                <div class="card-vertical-product-price">
-                                                    ۱۲۷,۰۰۰
-                                                    <span class="price-currency">تومان</span>
-                                                </div>
-                                                <div class="product-actions-secondary">
-                                                    <div class="heart" title="افزودن به لیست علاقه مندی">
-                                                        <span class="mdi mdi-heart"></span>
-                                                    </div>
-                                                    <div class="product-introduction-cart" title="افزودن به سبد خرید">
-                                                        <span class="c-introduction">
-                                                            +
-                                                        </span>
-
-                                                    </div>
-                                                    <div class="comparison" title="افزودن برای مقایسه">
-                                                        <i class="fa fa-random" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="item-content">
-                                <a href="#" class="link-content">
-                                    <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
-                                        <div class="product-vertical">
-                                            <div class="vertical-product-thumb">
-                                                <a href="#">
-                                                    <div class="stars-plp">
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star"></span>
-                                                    </div>
-                                                    <img src="/images/content-product/1.jpg">
-                                                </a>
-                                            </div>
-                                            <div class="card-vertical-product-content">
-                                                <div class="card-vertical-product-title">
-                                                    <a href="#">
-                                                        ساعت هوشمند جی-تب مدل W101 Hero
-                                                    </a>
-                                                </div>
-                                                <div class="card-vertical-product-price">
-                                                    ۱۲۷,۰۰۰
-                                                    <span class="price-currency">تومان</span>
-                                                </div>
-                                                <div class="product-actions-secondary">
-                                                    <div class="heart" title="افزودن به لیست علاقه مندی">
-                                                        <span class="mdi mdi-heart"></span>
-                                                    </div>
-                                                    <div class="product-introduction-cart" title="افزودن به سبد خرید">
-                                                        <span class="c-introduction">
-                                                            +
-                                                        </span>
-
-                                                    </div>
-                                                    <div class="comparison" title="افزودن برای مقایسه">
-                                                        <i class="fa fa-random" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
-                                        <div class="product-vertical">
-                                            <div class="vertical-product-thumb">
-                                                <a href="#">
-                                                    <div class="stars-plp">
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star"></span>
-                                                    </div>
-                                                    <img src="/images/content-product/2.jpg">
-                                                </a>
-                                            </div>
-                                            <div class="card-vertical-product-content">
-                                                <div class="card-vertical-product-title">
-                                                    <a href="#">
-                                                        ساعت هوشمند جی-تب مدل W101 Hero
-                                                    </a>
-                                                </div>
-                                                <div class="card-vertical-product-price">
-                                                    ۱۲۷,۰۰۰
-                                                    <span class="price-currency">تومان</span>
-                                                </div>
-                                                <div class="product-actions-secondary">
-                                                    <div class="heart" title="افزودن به لیست علاقه مندی">
-                                                        <span class="mdi mdi-heart"></span>
-                                                    </div>
-                                                    <div class="product-introduction-cart" title="افزودن به سبد خرید">
-                                                        <span class="c-introduction">
-                                                            +
-                                                        </span>
-
-                                                    </div>
-                                                    <div class="comparison" title="افزودن برای مقایسه">
-                                                        <i class="fa fa-random" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-2 col-md-4 col-xs-12 pull-right mb-3">
-                                        <div class="product-vertical">
-                                            <div class="vertical-product-thumb">
-                                                <a href="#">
-                                                    <div class="stars-plp">
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star active"></span>
-                                                        <span class="mdi mdi-star"></span>
-                                                    </div>
-                                                    <img src="/images/content-product/3.jpg">
-                                                </a>
-                                            </div>
-                                            <div class="card-vertical-product-content">
-                                                <div class="card-vertical-product-title">
-                                                    <a href="#">
-                                                        ساعت هوشمند جی-تب مدل W101 Hero
-                                                    </a>
-                                                </div>
-                                                <div class="card-vertical-product-price">
-                                                    ۱۲۷,۰۰۰
-                                                    <span class="price-currency">تومان</span>
-                                                </div>
-                                                <div class="product-actions-secondary">
-                                                    <div class="heart" title="افزودن به لیست علاقه مندی">
-                                                        <span class="mdi mdi-heart"></span>
-                                                    </div>
-                                                    <div class="product-introduction-cart" title="افزودن به سبد خرید">
-                                                        <span class="c-introduction">
-                                                            +
-                                                        </span>
-
-                                                    </div>
-                                                    <div class="comparison" title="افزودن برای مقایسه">
-                                                        <i class="fa fa-random" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                   
                                 </a>
                             </li>
                         </ul>
@@ -1830,174 +602,60 @@
                 <div class="product-carousel owl-carousel owl-theme owl-rtl owl-loaded owl-drag">
                     <div class="owl-stage-outer">
                         <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 2234px;">
+                        @foreach($popular as $key => $item)
+                        @if(! $key >= 5)
                             <div class="owl-item active" style="width: 309.083px; margin-left: 10px;">
                                 <div class="item">
-                                    <a href="#">
-                                        <img src="/images/slider-product/tev-1.jpg" class="img-fluid" alt="">
+                                    <a href="{{ route('show_product', ['product' => $item->title]) }}">
+                                        <div class="stars-plp">
+                                            <span class="mdi mdi-star active"></span>
+                                            <span class="mdi mdi-star active"></span>
+                                            <span class="mdi mdi-star active"></span>
+                                            <span class="mdi mdi-star active"></span>
+                                            <span class="mdi mdi-star active"></span>
+                                        </div>
+                                        <img src="{{ $item->image }}" class="img-fluid" alt="">
                                     </a>
                                     <h2 class="post-title">
-                                        <a href="#">
-                                            تلویزیون ال ای دی هوشمند سامسونگ مدل 82NU8900 سایز 82 اینچ
+                                        <a href="{{ route('show_product', ['product' => $item->title]) }}">
+                                           {{$item->title}}
                                         </a>
                                     </h2>
                                     <div class="price">
                                         <ins>
-                                            <span>۳,۳۹۵,۰۰۰<span>تومان</span></span>
-                                            <div class="stars-plp">
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                            </div>
+                                            <span>{{number_format($item->price)}}<span>تومان</span></span>
                                         </ins>
                                     </div>
                                 </div>
                             </div>
-                            <div class="owl-item active" style="width: 309.083px; margin-left: 10px;">
-                                <div class="item">
-                                    <a href="#">
-                                        <img src="/images/slider-product/tev-2.jpg" class="img-fluid" alt="">
-                                    </a>
-                                    <h2 class="post-title">
-                                        <a href="#">
-                                            تلویزیون ال ای دی هوشمند ایکس ویژن مدل 55XT515 سایز 55 اینچ
-                                        </a>
-                                    </h2>
-                                    <div class="price">
-                                        <ins>
-                                            <span>۳,۳۹۵,۰۰۰<span>تومان</span></span>
-                                            <div class="stars-plp">
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star"></span>
-                                            </div>
-                                        </ins>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item active" style="width: 309.083px; margin-left: 10px;">
-                                <div class="item">
-                                    <a href="#">
-                                        <img src="/images/slider-product/tev-3.jpg" class="img-fluid" alt="">
-                                    </a>
-                                    <h2 class="post-title">
-                                        <a href="#">
-                                            تلویزیون ال ای دی هوشمند مجیک تی وی مدل MT65D2400 سایز 65 اینچ
-                                        </a>
-                                    </h2>
-                                    <div class="price">
-                                        <ins>
-                                            <span>۳,۳۹۵,۰۰۰<span>تومان</span></span>
-                                            <div class="stars-plp">
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                            </div>
-                                        </ins>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item active" style="width: 309.083px; margin-left: 10px;">
-                                <div class="item">
-                                    <a href="#">
-                                        <img src="/images/slider-product/tev-4.jpg" class="img-fluid" alt="">
-                                    </a>
-                                    <h2 class="post-title">
-                                        <a href="#">
-                                            تلویزیون ال ای دی ال جی مدل 43LJ52100 سایز 43 اینچ
-                                        </a>
-                                    </h2>
-                                    <div class="price">
-                                        <ins>
-                                            <span>۳,۳۹۵,۰۰۰<span>تومان</span></span>
-                                            <div class="stars-plp">
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star"></span>
-                                                <span class="mdi mdi-star"></span>
-                                            </div>
-                                        </ins>
-                                    </div>
-                                </div>
-                            </div>
+                             @else
                             <div class="owl-item" style="width: 309.083px; margin-left: 10px;">
                                 <div class="item">
-                                    <a href="#">
-                                        <img src="/images/slider-product/tev-5.jpg" class="img-fluid" alt="">
+                                    <a href="{{ route('show_product', ['product' => $item->title]) }}">
+                                        <div class="stars-plp">
+                                            <span class="mdi mdi-star active"></span>
+                                            <span class="mdi mdi-star active"></span>
+                                            <span class="mdi mdi-star active"></span>
+                                            <span class="mdi mdi-star active"></span>
+                                            <span class="mdi mdi-star active"></span>
+                                        </div>
+                                        <img src="{{ $item->image }}" class="img-fluid" alt="">
                                     </a>
                                     <h2 class="post-title">
-                                        <a href="#">
-                                            تلویزیون ال ای دی هوشمند ایکس ویژن مدل 49XTU725 سایز 49 اینچ
+                                        <a href="{{ route('show_product', ['product' => $item->title]) }}">
+                                           {{$item->title}}
                                         </a>
                                     </h2>
                                     <div class="price">
                                         <ins>
-                                            <span>۳,۳۹۵,۰۰۰<span>تومان</span></span>
-                                            <div class="stars-plp">
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star"></span>
-                                                <span class="mdi mdi-star"></span>
-                                            </div>
+                                            <span>{{number_format($item->price)}}<span>تومان</span></span>
                                         </ins>
                                     </div>
                                 </div>
                             </div>
-                            <div class="owl-item" style="width: 309.083px; margin-left: 10px;">
-                                <div class="item">
-                                    <a href="#">
-                                        <img src="/images/slider-product/tev-6.jpg" class="img-fluid" alt="">
-                                    </a>
-                                    <h2 class="post-title">
-                                        <a href="#">
-                                            تلویزیون ال ای دی هوشمند ایکس ویژن مدل 43XT725 سایز 43 اینچ
-                                        </a>
-                                    </h2>
-                                    <div class="price">
-                                        <ins>
-                                            <span>۳,۳۹۵,۰۰۰<span>تومان</span></span>
-                                            <div class="stars-plp">
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star"></span>
-                                            </div>
-                                        </ins>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item" style="width: 309.083px; margin-left: 10px;">
-                                <div class="item">
-                                    <a href="#">
-                                        <img src="/images/slider-product/tev-7.jpg" class="img-fluid" alt="">
-                                    </a>
-                                    <h2 class="post-title">
-                                        <a href="#">
-                                            تلویزیون ال ای دی هوشمند ایکس ویژن مدل 55XTU725 سایز 55 اینچ
-                                        </a>
-                                    </h2>
-                                    <div class="price">
-                                        <ins>
-                                            <span>۳,۳۹۵,۰۰۰<span>تومان</span></span>
-                                            <div class="stars-plp">
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star active"></span>
-                                                <span class="mdi mdi-star"></span>
-                                            </div>
-                                        </ins>
-                                    </div>
-                                </div>
-                            </div>
+                            @endif
+                            @endforeach
+                          
                         </div>
                     </div>
                     <div class="owl-nav"><button type="button" role="presentation" class="owl-prev disabled"><i class="fa fa-angle-right"></i></button><button type="button" role="presentation" class="owl-next"><i class="fa fa-angle-left"></i></button></div>
@@ -2012,3 +670,33 @@
 
 <!--footer------------------------------------->
 @include('layouts.footer')
+{{-- <script>
+function setItem(value ){
+  $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+            // 'Content-Type': 'application/json'
+        }
+    })
+
+ $.ajax({
+        type : 'POST',
+        url : '/ProductItem',
+         data:{
+          name:value,
+          name2:value,
+         
+        },
+      
+        success:function(response){
+          console.log(response);
+          if(response) {
+            // $('.success').text(response.success);
+            // $("#ajaxform")[0].reset();
+          }
+        },
+      
+    });
+// }
+
+</script> --}}

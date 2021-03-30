@@ -1,3 +1,12 @@
+:root {
+    --مشکی: black;
+    --قرمز: red;
+    --آبی: blue;
+    --زرد: yellow;
+    --صورتی: pink;
+ 
+  }
+
 * {
     margin: 0;
     padding: 0;
@@ -6160,7 +6169,11 @@ span.show-less{
 .tabs .tabs-product .tab-wrapper ul.box-tabs li.box-tabs-tab:first-child{
     margin-right: 25px;
 }
-
+.attribute_section{
+        border: 1px solid #dfdfdf;
+    padding: 20px;
+    margin:20px 0;
+}
 .tabs .tabs-product .tab-wrapper ul.box-tabs li.box-tabs-tab a.box-tab-item{
     padding: 15px 17px;
     position: relative;
@@ -6169,8 +6182,15 @@ span.show-less{
     line-height: 27px;
     font-size: 15px;
     font-weight: 600;
+    cursor: pointer;
 }
-
+.wrap_tag::after{
+	content: ' , ';
+	color: #959595!important;
+}
+.wrap_tag:last-child::after{
+	content: '';
+}
 .tabs .tabs-product .tab-wrapper ul.box-tabs li.box-tabs-tab a.box-tab-item:hover{
     border-top: 2px solid #f7858d;
     position: relative;

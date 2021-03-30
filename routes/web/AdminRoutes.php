@@ -3,16 +3,32 @@
 use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CommentsController;
+use App\Http\Controllers\Admin\DropzoneController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\User\PermissionController as UserPermissionController;
 use App\Http\Controllers\Admin\UserController;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
+    // var_dump(Auth::user());
+    // return Auth::user();
+    // Auth::logout();
     return view('panel.index') ;
 })->middleware('auth.admin');
+
+Route::post('/logout', function () {
+    Auth::logout();
+        session()->forget('admin');
+        alert()->success('با موفقیت خارج شدید', 'موفقیت');
+        
+        return redirect('/');
+    // return session()->all();
+    // return view('panel.index') ;
+})->name('logoutAdmin');
+Route::post('attribute/values', [AttributeController::class , 'getvalues'] )->name('test')->middleware('auth.admin');
 
 Route::resource('users', UserController::class )->middleware('auth.admin');
 Route::resource('permissions', PermissionController::class )->middleware('auth.admin');
@@ -31,4 +47,7 @@ Route::resource('comments', CommentsController::class )->only(['index' , 'update
 
 Route::resource('categories', CategoryController::class );
 
-Route::post('attribute/values', [AttributeController::class , 'getvalues'] );
+Route::get('/dropzone', [DropzoneController::class , 'index'] )->name('dropzone.index');
+Route::post('dropzone/upload', [DropzoneController::class , 'upload'] )->name('dropzone.upload');
+Route::get('dropzone/fetch', [DropzoneController::class , 'fetch'])->name('dropzone.fetch');
+Route::get('dropzone/delete', [DropzoneController::class , 'delete'])->name('dropzone.delete');

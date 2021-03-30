@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\DropzoneController;
 use App\Http\Controllers\HomeController;
 use App\Mail\SendMail;
 use App\Models\User;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 use App\Rules\recaptcha;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +30,7 @@ use App\Rules\recaptcha;
 
 
 Route::get('/', [HomeController::class , 'index']);
+Route::get('/shop/{category}', [HomeController::class , 'shop'])->name("shop");
 Route::get('/product/{product}', [HomeController::class , 'product'])->name('show_product');
 Route::post('/product', [HomeController::class , 'comment'])->name('send_comment');
 
@@ -37,14 +40,20 @@ Route::post('/product', [HomeController::class , 'comment'])->name('send_comment
 
 
 Route::get('/register' , [CustomAuthController::class , 'register']);
+// Route::post('/ProductItem' , [CustomAuthController::class , 'Productitem']);
 
 Route::get('/register/{id}', function ($id) {
    $article = User::find($id);
    return $article;
 });
+
 Route::post('/register', [CustomAuthController::class , 'register_form'])->name('register');
 Route::get('/login', [CustomAuthController::class , 'login'] );
 Route::post('/login', [CustomAuthController::class , 'login_form'] )->name('login');
 Route::post('/logout' , [CustomAuthController::class , 'logout'] )->name('logout');
 Route::get('/recovery_password', [CustomAuthController::class , 'recovery'] )->name('recovery');
 Route::post('/recovery_password', [CustomAuthController::class , 'recover_password'] )->name('recovery');
+
+// Route::get('downloads/file', function () {
+//   return  Storage::download(request('path'));
+// })->name('download.file')->middleware('signed');

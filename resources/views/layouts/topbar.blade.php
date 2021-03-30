@@ -51,7 +51,7 @@
                                              <!-- <a href="/" class="dropdown-item">
                                                  <i class="mdi mdi-logout-variant"></i> -->
                                              <!-- خروج از حساب -->
-                                             <button class="dropdown-item">خروج از حساب</button>
+                                             <button class="btn btn-danger dropdown-item">خروج از حساب</button>
                                              <!-- </a> -->
                                          </form>
                                      </li>

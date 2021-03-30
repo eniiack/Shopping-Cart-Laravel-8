@@ -103,7 +103,7 @@
                                                             
                                                         </td>
                                                         @endcan
-                                                        @can('edit-user' || 'delete-user') 
+                                                        @canany(['edit-user' , 'delete-user']) 
                                                         <td
                                                             class="text-center d-flex   justify-content-center ">
                                                             @can('edit-user')

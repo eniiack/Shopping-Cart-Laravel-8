@@ -14,6 +14,7 @@
                                         <div class="profile-comment-content" style="padding: 0">
                                             <h4>{{ $comment->user->name }}
                                                 ({{ jdate($comment->created_at)->format('%A, %d %B %y') }})
+                                                {{-- ({{ jdate($comment->created_at)->ago() }}) --}}
                                                 <span class="profile-comment-status-approved">تایید
                                                     شده</span>
                                             </h4>

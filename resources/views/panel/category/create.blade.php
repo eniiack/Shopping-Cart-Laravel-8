@@ -1,4 +1,4 @@
-@section('head', 'ایجاد محصول')
+@section('head', 'ایجاد دسته بندی')
 
     @include('panel.layouts.header')
     @include('panel.layouts.menu')
@@ -16,11 +16,11 @@
                         <div class="col-md-12 col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">ایجاد محصول</h4>
+                                    <h4 class="card-title">ایجاد دسته بندی</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
-                                        <form class="form form-vertical" method="post"
+                                        <form enctype="multipart/form-data" class="form form-vertical" method="post"
                                             action="{{ route('admin.categories.store') }}">
                                             @csrf
                                             <div class="form-body">
@@ -28,7 +28,7 @@
                                                     <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="first-name-vertical">عنوان دسته</label>
-                                                            <input  type="text" name="name" id="first-name-vertical"
+                                                            <input type="text" name="name" id="first-name-vertical"
                                                                 class="form-control" placeholder="عنوان دسته">
                                                             @error('name')
                                                                 <span class="alert m-t4 text-danger">*{{ $message }}</span>
@@ -36,24 +36,43 @@
                                                         </div>
                                                     </div>
 
-                                                    @if(request('parent'))
-                                                    @php
-                                                        $parent = \App\Models\Category::find(request('parent'))
-                                                    @endphp
-                                                    <div class="col-12">
-                                                        <div class="form-group">
-                                                            <label for="first-name-vertical">عنوان دسته</label>
-                                                            <input disabled value="{{ $parent->name }}"  type="text" name="" id="first-name-vertical"
-                                                                class="form-control" placeholder="عنوان دسته">
-                                                            @error('name')
-                                                                <span class="alert m-t4 text-danger">*{{ $message }}</span>
-                                                            @enderror
-                                                        <input type="hidden" name="parent" value="{{ $parent->id }}">
+                                                    @if (request('parent'))
+                                                        @php
+                                                            $parent = \App\Models\Category::find(request('parent'));
+                                                        @endphp
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="first-name-vertical">عنوان دسته</label>
+                                                                <input disabled value="{{ $parent->name }}" type="text"
+                                                                    name="" id="first-name-vertical" class="form-control"
+                                                                    placeholder="عنوان دسته">
+                                                                @error('name')
+                                                                    <span
+                                                                        class="alert m-t4 text-danger">*{{ $message }}</span>
+                                                                @enderror
+                                                                <input type="hidden" name="parent"
+                                                                    value="{{ $parent->id }}">
 
+                                                            </div>
                                                         </div>
-                                                   
-                                                @endif
-                                                   
+                                                        @endif
+                                                    @if (! request('parent'))
+
+                                                            <div class="col-12">
+                                                                <div class="form-group">
+                                                                    <label for="first-name-vertical">تصویر شاخص</label>
+                                                                    <input dir="ltr"  type="file" name="image" id="first-name-vertical"
+                                                                        class="form-control"  placeholder="تصویر شاخص">
+        
+                                                                    @error('image')
+                                                                        <span class="alert m-t4 text-danger">*{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+        
+                                                            </div>
+                                                            @endif
+                                                    
+
                                                     <div class="col-12 d-flex justify-content-end">
                                                         <button type="submit" class="btn btn-primary mr-1 mb-1">ثبت</button>
                                                     </div>
