@@ -22,7 +22,8 @@
     <!--    main style------------------------------>
     <link rel="stylesheet" href="/css/main.css">
     <!--    nouislider------------------------------>
-    <link rel="stylesheet" href="assets/css/noUISlider.min.css">
+    {{-- <link rel="stylesheet" href="assets/css/noUISlider.min.css"> --}}
+
 </head>
 
 <body>

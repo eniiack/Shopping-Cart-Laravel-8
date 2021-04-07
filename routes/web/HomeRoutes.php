@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\DropzoneController;
 use App\Http\Controllers\HomeController;
@@ -30,9 +31,12 @@ use Illuminate\Support\Facades\Storage;
 
 
 Route::get('/', [HomeController::class , 'index']);
+Route::get('/cart', [HomeController::class , 'cart']);
 Route::get('/shop/{category}', [HomeController::class , 'shop'])->name("shop");
+Route::get('/shop', [HomeController::class , 'shoping'])->name("shoping");
 Route::get('/product/{product}', [HomeController::class , 'product'])->name('show_product');
 Route::post('/product', [HomeController::class , 'comment'])->name('send_comment');
+Route::post('/payment', [HomeController::class , 'payment'])->name('cart.payment')->middleware('auth');
 
 
 // All Routes Of Auth /////////////////////////////////////////
@@ -57,3 +61,10 @@ Route::post('/recovery_password', [CustomAuthController::class , 'recover_passwo
 // Route::get('downloads/file', function () {
 //   return  Storage::download(request('path'));
 // })->name('download.file')->middleware('signed');
+
+
+
+Route::post('card/add', [CartController::class , 'addToCart'] )->name('cart.add');
+Route::post('card/minus', [CartController::class , 'minus'] )->name('cart.minus');
+Route::post('card/delete/{id}', [CartController::class , 'deleteFromCart'] )->name('cart.delete');
+    

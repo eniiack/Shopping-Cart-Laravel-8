@@ -175,7 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\BladeServiceProvider::class,
-
+        App\Helpers\Cart\CartServiceProvider::class,
     ],
 
     /*
@@ -229,6 +229,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'ProductAttributeValues' => App\Models\ProductAttributeValues::class, 
         'Product' => App\Models\Product::class, 
+        'Cart' => App\Helpers\Cart\Cart::class,
     ],
 
 ];

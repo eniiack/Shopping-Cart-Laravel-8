@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Cart\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Role;
@@ -28,9 +29,26 @@ class HomeController extends Controller
         $products = $product->products;
         return view('shop' , compact('products'));
     }
+    public function shoping()
+    {
+     
+        $products = Product::paginate(10);
+        return view('shop' , compact('products'));
+    }
+
+    public function cart()
+    {
+        return view('cart');
+    }
 
     public function index()
     {
+       
+        // return $users = User::where('role', 1)
+        // ->where('name', 'LIKE', "%{$request->search}%")->orwhere('is_superuser', 1)->where('lastName', 'LIKE', "%{$request->search}%")->get();
+        // return Cart::all();
+        // return Cart::get('k4TNGaViRD')['product']['id'];
+        // dd(Cart::get('2'));
         // $product = Product::find(33);
         // return $product->attributes;
         // foreach ($product->attributes as $role) {
@@ -102,6 +120,30 @@ class HomeController extends Controller
         auth()->user()->comments()->create($data);
         
         alert()->success('با موفقیت ثبت شد', 'موفقیت');
+        return back();
+    }
+
+    public function payment()
+    {
+        $cart = Cart::all();
+        if($cart->count()){
+            $price = $cart->sum(function($cart){
+                return $cart['product']->price * $cart['quantity'];
+            });
+
+            $orderItems = $cart->mapWithKeys(function($cart){
+                return [$cart['product']->id =>['quantity' => $cart['quantity'] ]];
+            });
+
+            
+
+          $order = auth()->user()->orders()->create([
+                "status"=>"unpaid",
+                "price"=>$price,
+            ]);
+            $order->products()->attach($orderItems);
+            return 'ok';
+        }
         return back();
     }
 }

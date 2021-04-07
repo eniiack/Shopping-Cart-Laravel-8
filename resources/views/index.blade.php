@@ -445,12 +445,16 @@
                                                     <div class="heart" title="افزودن به لیست علاقه مندی">
                                                         <span class="mdi mdi-heart"></span>
                                                     </div>
+                                                    {{-- <form action="{{ route('cart.add' , $product->id) }}" method="POST" id="add-to-cart">
+                                                        @csrf
+                                                    </form> --}}
                                                     <div class="product-introduction-cart" title="افزودن به سبد خرید">
-                                                        <span class="c-introduction">
+                                                        <span onclick="Cart({{$product->id}})" class="c-introduction">
                                                             +
                                                         </span>
 
                                                     </div>
+                                                
                                                     <div class="comparison" title="افزودن برای مقایسه">
                                                         <i class="fa fa-random" aria-hidden="true"></i>
                                                     </div>
@@ -670,33 +674,33 @@
 
 <!--footer------------------------------------->
 @include('layouts.footer')
-{{-- <script>
-function setItem(value ){
-  $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
-            // 'Content-Type': 'application/json'
-        }
-    })
+<script>
+// function setItem(value ){
+//   $.ajaxSetup({
+//         headers: {
+//             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+//             // 'Content-Type': 'application/json'
+//         }
+//     })
 
- $.ajax({
-        type : 'POST',
-        url : '/ProductItem',
-         data:{
-          name:value,
-          name2:value,
+//  $.ajax({
+//         type : 'POST',
+//         url : '/ProductItem',
+//          data:{
+//           name:value,
+//           name2:value,
          
-        },
+//         },
       
-        success:function(response){
-          console.log(response);
-          if(response) {
-            // $('.success').text(response.success);
-            // $("#ajaxform")[0].reset();
-          }
-        },
+//         success:function(response){
+//           console.log(response);
+//           if(response) {
+//             // $('.success').text(response.success);
+//             // $("#ajaxform")[0].reset();
+//           }
+//         },
       
-    });
+//     });
 // }
 
-</script> --}}
+</script>
