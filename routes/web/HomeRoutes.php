@@ -37,6 +37,7 @@ Route::get('/shop', [HomeController::class , 'shoping'])->name("shoping");
 Route::get('/product/{product}', [HomeController::class , 'product'])->name('show_product');
 Route::post('/product', [HomeController::class , 'comment'])->name('send_comment');
 Route::post('/payment', [HomeController::class , 'payment'])->name('cart.payment')->middleware('auth');
+Route::get('/payment/callback', [HomeController::class , 'callback'])->name('payment.callback');
 
 
 // All Routes Of Auth /////////////////////////////////////////

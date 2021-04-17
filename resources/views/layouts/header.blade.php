@@ -7,7 +7,7 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <link rel="shortcut icon" type="image/x-icon" href="/images/logo.ico">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>فروشگاه اینترنتی @yield('head')</title>
+    {!! SEO::generate() !!}
     <!--    font------------------------------------>
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/materialdesignicons.css">

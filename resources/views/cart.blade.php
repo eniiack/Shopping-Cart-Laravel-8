@@ -72,18 +72,41 @@
                                     </div>
                                     <div class="unit-price before">
                                         <div class="product-price">
+                                            @if(! $cart['discount_percent'])
                                             {{ number_format($product->price) }}
                                             <span>
                                                 تومان
                                             </span>
+                                            @else
+                                           <del class="text-danger font-weight-semibold"> {{ number_format($product->price) }}</del>
+                                           <span class="text-danger">
+                                            تومان
+                                        </span>
+                                        <div>
+                                           {{ number_format($product->price - ($product->price * $cart['discount_percent'] )) }}
+                                           <span >
+                                            تومان
+                                        </span>
+                                        </div>
+                                        @endif
                                         </div>
                                     </div>
                                     <div class="total before">
                                         <div class="TotalPrice{{$product->id}}">
+                                            @if(! $cart['discount_percent'])
                                             {{ number_format($product->price * $cart['quantity']) }}
                                             <span>
                                                 تومان
                                             </span>
+                                            @else
+                                            @php
+                                              $price_off = $product->price - ($product->price * $cart['discount_percent']);  
+                                            @endphp
+                                            {{ number_format( $price_off  *  $cart['quantity']) }}
+                                            <span>
+                                                تومان
+                                            </span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -100,15 +123,31 @@
                                     جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
                             </div>
                             <div class="discount-code mb-4">
-                                <form action="#" class="discount-form">
+                                @if($discount = Cart::getDiscount())
+
+                                <div class="mt-4">
+                                    <form action="/discount/delete" method="post" id="delete-discount">
+                                        @method('delete')
+                                        @csrf
+                                        <input type="hidden" name="cart" value="cart-roocket">
+                                    </form>
+                                    <span>کد تخفیف فعال : <span class="text-success">{{ $discount->code }}</span> <a href="#" onclick="event.preventDefault();document.getElementById('delete-discount').submit()" class="badge badge-danger">حذف</a></span>
+                                    <div>درصد تخفیف : <span class="text-success">{{ $discount->percent }} درصد</span></div>
+                                </div>
+                                @else
+                                <form action="{{ route('cart.discount.check') }}" class="discount-form" method="POST">
+                                    @csrf
                                     <label for="discount">کد تخفیف</label>
-                                    <input type="text" id="discount" class="input-discount"
+                                    <input type="hidden" name="cart" value="cart">
+                                    <input type="text" name="discount" id="discount" class="input-discount"
                                         placeholder="کد تخفیف خود را وارد کنید">
-                                    <a href="#">
-                                        <button class="btn-discount">اعمال</button>
-                                    </a>
+                                        <button type="submit" class="btn-discount">اعمال</button>
                                 </form>
+                                @endif
                             </div>
+                            @error('discount')
+                            <span class="alert m-t4 text-danger">*{{ $message }}</span>
+                        @enderror
                             <div class="discount-code mb-2">
                                 <form action="#" class="discount-form">
                                     <label for="discount">کد هدیه</label>
@@ -124,8 +163,11 @@
 
                                 @php
                                     $totaalPrice = Cart::all()->sum(function ($cart) {
-                                        return $cart['price'] * $cart['quantity'];
+                                        return $cart['discount_percent'] == 0
+                    ? $cart['product']->price * $cart['quantity']
+                    : ($cart['product']->price - ($cart['product']->price * $cart['discount_percent'])) *  $cart['quantity'];
                                     });
+                                
                                 @endphp
                                 <span class="amount-of"><span id="totalAmount">{{ number_format($totaalPrice) }}<span> تومان</span></span>
                                     

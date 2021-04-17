@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Cart\Cart;
 use App\Models\Category;
+use App\Models\Payment;
 use App\Models\Product;
 use App\Models\Role;
 use App\Models\User;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use App\Rules\recaptcha;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
@@ -43,7 +45,8 @@ class HomeController extends Controller
 
     public function index()
     {
-       
+    //    return Cart::all();
+    //    return session()->get('cart');
         // return $users = User::where('role', 1)
         // ->where('name', 'LIKE', "%{$request->search}%")->orwhere('is_superuser', 1)->where('lastName', 'LIKE', "%{$request->search}%")->get();
         // return Cart::all();
@@ -125,10 +128,16 @@ class HomeController extends Controller
 
     public function payment()
     {
+        
         $cart = Cart::all();
+        $cart = collect([]);
+        session()->forget('cart');
+        return redirect('/');
         if($cart->count()){
             $price = $cart->sum(function($cart){
-                return $cart['product']->price * $cart['quantity'];
+                return $cart['discount_percent'] == 0
+                    ? $cart['product']->price * $cart['quantity']
+                    : ($cart['product']->price - ($cart['product']->price * $cart['discount_percent'])) *  $cart['quantity'];
             });
 
             $orderItems = $cart->mapWithKeys(function($cart){
@@ -142,8 +151,67 @@ class HomeController extends Controller
                 "price"=>$price,
             ]);
             $order->products()->attach($orderItems);
-            return 'ok';
+            
+         
+
+            $token = config('services.payping.token');
+            $res_number = Str::random();
+            $args = [
+                "amount" => 1000,
+                "payerName" => auth()->user()->name,
+                "returnUrl" => route('payment.callback'),
+                "clientRefId" => $res_number
+            ];
+
+            $payment = new \PayPing\Payment($token);
+
+            try {
+                $payment->pay($args);
+            } catch (\Exception $e) {
+               throw $e;
+            }
+            //echo $payment->getPayUrl();
+            $order->payments()->create([
+                'resnumber' => $res_number,
+                'price' => $price
+            ]);
+
+            return redirect($payment->getpayUrl());
+
+
         }
         return back();
+    }
+    public function callback()
+    {
+        $payment = Payment::where('resnumber', $request->clientrefid)->firstOrFail();
+
+        $token = config('services.payping.token');
+
+        $payping = new \PayPing\Payment($token);
+
+        try {
+            // $payment->price
+            if($payping->verify($request->refid, 1000)){
+                $payment->update([
+                    'status' => 1
+                ]);
+
+                $payment->order()->update([
+                    'status' => 'paid'
+                ]);
+
+                 alert()->success('پرداخت شما موفق بود');
+                 return redirect('/products');
+            }else{
+                 alert()->error('پرداخت شما تایید نشد');
+                 return redirect('/products');
+            }
+        } catch (\Exception $e) {
+            $errors = collect(json_decode($e->getMessage() , true));
+
+             alert()->error($errors->first());
+             return redirect('/products');
+        }
     }
 }
