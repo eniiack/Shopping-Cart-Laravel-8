@@ -15,9 +15,6 @@
                                 <a href="/" class="breadcrumb-link">خانه</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="#" class="breadcrumb-link">کالای دیجیتال</a>
-                            </li>
-                            <li class="breadcrumb-item">
                                 <a href="{{ route('show_product', ['product' => $product->title]) }}" class="breadcrumb-link active-breadcrumb">{{$product->title}}</a>
                             </li>
                         </ul>
@@ -162,7 +159,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="parent-btn">
-                                                        <button class="dk-btn dk-btn-info at-c as-c">
+                                                        <button onclick="Cart({{$product->id}})" class="dk-btn dk-btn-info at-c as-c">
                                                             افزودن به سبد خرید
                                                             <i class="mdi mdi-cart"></i>
                                                         </button>

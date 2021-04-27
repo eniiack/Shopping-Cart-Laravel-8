@@ -3,6 +3,13 @@
      <aside class="adplacement-top-header">
          <a href="index.html" class="adplacement-item" title="شگفت سوپرمارکتی"></a>
      </aside>
+      <div class="container">
+        <select class="form-control changeLang">
+            <option value="en" {{ session()->get('locale') == 'en'? 'selected' : '' }}>English</option>
+            <option value="hindi" {{ session()->get('locale') == 'hindi'? 'selected' : '' }}>Hindi</option>
+            <option value="sp" {{ session()->get('locale') == 'sp'? 'selected' : '' }}>Spanish</option>
+        </select>
+    </div>
      <div class="container-main">
          <div class="col-lg-8 col-md-8 col-xs-12 pull-right">
              <div class="header-right">
@@ -11,9 +18,9 @@
                  </div>
                  <div class="col-lg-9 col-md-9 col-xs-12 pull-right">
                      <div class="search-header">
-                         <form action="#">
-                             <input type="text" name="search" class="search-input"
-                                 placeholder="نام کالا، برند و یا دسته مورد نظر خود را جستجو کنید…">
+                         <form action="{{ route('search.product', ['text' => "q"]) }}">
+                             <input type="text" name="search"  class="search-input"
+                                 placeholder="نام محصول را جستجو کنید…">
                              <button type="submit" class="button-search">
                                  <img src="/images/search.png">
                              </button>

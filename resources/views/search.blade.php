@@ -2,26 +2,6 @@
 
     @include('layouts.header')
     @include('layouts.topbar')
-    @php
-    // dd(\Cart::allResultSearch());
-
-    // if (session()->has('searchValue')) {
-    //     if (isset($_GET['page'])) {
-    //         var_dump('has');
-    //     } elseif (!isset($_GET['page'])) {
-    //         var_dump('no');
-    //         session()->put('searchValue', null);
-    //     }
-    // } else {
-    //     var_dump('123');
-    // }
-    // $rr = count(session()->get('searchValue'));
-    // var_dump($rr);
-
-    //    session()->put('searchValue', null);
-
-    //    return session()->forget('searchValue');
-    @endphp
 
     <div class="container-main">
 

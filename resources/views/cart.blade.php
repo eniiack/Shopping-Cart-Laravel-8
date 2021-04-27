@@ -11,7 +11,7 @@
                         <a href="/" class="breadcrumb-link">خانه</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="#" class="breadcrumb-link active-breadcrumb">سبد خرید</a>
+                        <a href="/cart" class="breadcrumb-link active-breadcrumb">سبد خرید</a>
                     </li>
                 </ul>
             </div>

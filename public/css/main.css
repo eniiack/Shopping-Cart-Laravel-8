@@ -6,9 +6,23 @@
     --صورتی: pink;
  
   }
+  #loader{
+      display: none;
+  }
   .load{
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    top: 25%;
+    right: 25%;
+      background-image: url('/gif/loading.gif');
+      background-repeat: no-repeat;
+      background-size: contain;
     z-index: 999999!important;
     opacity: 0.75!important;
+  }
+  #cardShopping{
+      position: relative;
   }
 * {
     margin: 0;
@@ -2862,6 +2876,7 @@ textarea {
 }
 
 .form-auth-row .remember-me{
+    cursor: pointer;
     margin-top: -4px;
     margin-right: 10px;
     text-align: right;

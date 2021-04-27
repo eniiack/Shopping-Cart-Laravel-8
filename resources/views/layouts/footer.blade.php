@@ -255,7 +255,14 @@
 <script type="text/javascript" src="/js/jquery.lazy.min.js"></script>
 
 </html>
-
+<script type="text/javascript">
+  
+    var url = "{{ route('changeLang') }}";
+    $(".changeLang").change(function(){
+        window.location.href = url + "?lang="+ $(this).val();
+    });
+  
+</script>
 <script>
     $('.remove-from-cart').click(function(){
         location.reload();
@@ -295,10 +302,6 @@
 
                 Load();
                 Remove();
-                  console.log(response);
-
-
-
                 if (response) {
                     // $('.success').text(response.success);
                     // $("#ajaxform")[0].reset();
@@ -360,6 +363,7 @@
 
     $(document).on('click', '.quantity .quantity-button.quantity-down', function() {
         var id = $(this).parent().parent().find('.number').attr('data-id');
+        var value = $(this).parent().parent().find('.number').attr('value');
        var section = $(this).parent().parent().parent().parent().find('checkout-body ');
        var loadSection = $(this).parent().parent().parent().parent().find('.total');
         $.ajaxSetup({
@@ -369,6 +373,11 @@
             }
         })
 
+        if(value == 1 || value - 1 == 1)
+        {
+
+        }
+       else{
         $.ajax({
             type: 'POST',
             url: '/card/minus',
@@ -396,7 +405,7 @@
 
                 Load();
                 Remove();
-                  console.log(response);
+                //   console.log(response);
 
 
 
@@ -407,6 +416,7 @@
             },
 
         });
+       }
     });
 
     function deleteProduct(id) {

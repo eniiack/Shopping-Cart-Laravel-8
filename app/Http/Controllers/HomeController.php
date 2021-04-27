@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Cart\Cart;
+use App\Models\AttributeValues;
 use App\Models\Category;
 use App\Models\Payment;
 use App\Models\Product;
@@ -12,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use App\Rules\recaptcha;
+use App\Models\Attribute;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 
@@ -20,22 +22,29 @@ class HomeController extends Controller
 
     public function constant()
     {
-
         $this->middleware('auth');
     }
 
-   
+   public function home()
+   {
+       return view('home');
+   }
     public function shop($category)
     {
+        // session()->put('searchValue' , null);
+        $attributeValues = AttributeValues::orderBy('id')->groupBy('value')->get();
         $product = Category::where("name" , $category)->first();
+        $allCategory = Category::all();
         $products = $product->products;
-        return view('shop' , compact('products'));
+        return view('shop' , compact('products', 'allCategory' , 'attributeValues'));
     }
     public function shoping()
     {
-     
+        $attributeValues = AttributeValues::orderBy('id')->groupBy('value')->get();
+        $allCategory = Category::all();
+        // $allCategory = $allCategory->pluck('id')->toArray();
         $products = Product::paginate(10);
-        return view('shop' , compact('products'));
+        return view('shop' , compact('products' , 'allCategory' , 'attributeValues'));
     }
 
     public function cart()
@@ -45,6 +54,17 @@ class HomeController extends Controller
 
     public function index()
     {
+
+         if($keyword = request('search')){
+             dd($keyword);
+            // $users->where('email' , 'LIKE' ,  "%{$keyword}%" )->orWhere('name' , 'LIKE' ,  "%{$keyword}%" );
+        }
+    
+        // $users = $users->paginate(2);
+
+
+
+
     //    return Cart::all();
     //    return session()->get('cart');
         // return $users = User::where('role', 1)
@@ -96,8 +116,9 @@ class HomeController extends Controller
    
     }
 
-    public function product($title )
+    public function product($title)
     {
+       
         $product = Product::where("title" , $title)->first();
         $category = $product->categories->pluck('id');
         $pp = $product->categories;
@@ -213,5 +234,68 @@ class HomeController extends Controller
              alert()->error($errors->first());
              return redirect('/products');
         }
+    }
+
+    public function searchProduct (Request $request){
+            
+        $attributeValues = AttributeValues::orderBy('id')->groupBy('value')->get();
+        // $product = Category::where("name" , $category)->first();
+        $allCategory = Category::all();
+
+
+        $products = Product::query();
+         if($keyword = request('search')){
+            $products->where('title' , 'LIKE' ,  "%{$keyword}%" )->orWhere('description' , 'LIKE' ,  "%{$keyword}%" );
+        }
+    
+        $products = $products->paginate(10);
+        return view('search', compact(['products' , 'attributeValues' , 'allCategory']));
+    }
+
+    public function search(Request $request)
+    {
+        
+        
+        if(isset($request->category)){
+            $count = count($request->category);
+            $arrayProduct = [];
+            $arrayBrand = [];
+            for($i = 0 ; $i < $count ; $i+=2){
+                $search_product = strpos($request->category[$i], 'product');
+                $search_brand = strpos($request->category[$i], 'brand');
+                if($search_product === false){
+    
+                }else{
+                     array_push($arrayProduct,$request->category[$i + 1]);
+                     
+                }
+    
+                if($search_brand === false){
+    
+                }else{
+                     array_push($arrayBrand,$request->category[$i + 1]);
+                }
+    
+                // array_push($arrayProduct,$request->category[$i + 1]);
+                // $search_product ?  array_push($arrayProduct,$request->category[$i + 1]) : ``;
+            }
+            $productCat = Category::whereIn('id', $arrayProduct)
+            ->get();
+            // $productCat = $productCat->pluck('id');
+    
+            $search = Cart::resultSearch($productCat);
+            return $search;
+            // $productBrand = Category::whereIn('id', $arrayBrand)
+            // ->get();
+            // $productBrand = $productBrand->pluck('id');
+            
+             
+            // return  $productCat->products;
+            // return $arrayProduct;
+            // return collect($request->category)->toArray();
+        }else{
+            session()->forget('searchValue');
+        }
+       
     }
 }

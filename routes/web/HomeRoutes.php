@@ -4,6 +4,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\DropzoneController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LocalizationController;
+use App\Http\Middleware\Localization;
 use App\Mail\SendMail;
 use App\Models\User;
 use App\Notifications\ActiveCode;
@@ -16,6 +18,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 use App\Rules\recaptcha;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 
 /*
@@ -28,9 +31,13 @@ use Illuminate\Support\Facades\Storage;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// Route::get('lang/{lang}', function ($lang) {
+//         App::setlocale($lang);
+//         return view('home');
+//     });
 
 Route::get('/', [HomeController::class , 'index']);
+Route::get('/home', [HomeController::class , 'home']);
 Route::get('/cart', [HomeController::class , 'cart']);
 Route::get('/shop/{category}', [HomeController::class , 'shop'])->name("shop");
 Route::get('/shop', [HomeController::class , 'shoping'])->name("shoping");
@@ -38,8 +45,10 @@ Route::get('/product/{product}', [HomeController::class , 'product'])->name('sho
 Route::post('/product', [HomeController::class , 'comment'])->name('send_comment');
 Route::post('/payment', [HomeController::class , 'payment'])->name('cart.payment')->middleware('auth');
 Route::get('/payment/callback', [HomeController::class , 'callback'])->name('payment.callback');
+Route::get('/search/{text}', [HomeController::class , 'searchProduct'])->name('search.product');
 
-
+Route::get('lang/{lang}', [LocalizationController::class , 'index']);
+        Route::get('lang/change', [LocalizationController::class , 'change'])->name('changeLang');
 // All Routes Of Auth /////////////////////////////////////////
 
 
@@ -68,4 +77,8 @@ Route::post('/recovery_password', [CustomAuthController::class , 'recover_passwo
 Route::post('card/add', [CartController::class , 'addToCart'] )->name('cart.add');
 Route::post('card/minus', [CartController::class , 'minus'] )->name('cart.minus');
 Route::post('card/delete/{id}', [CartController::class , 'deleteFromCart'] )->name('cart.delete');
-    
+
+
+// search
+
+Route::post('search/products', [HomeController::class , 'search'] )->name('search.products');

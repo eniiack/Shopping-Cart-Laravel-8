@@ -8,10 +8,12 @@ use Modules\Discount\Entities\Discount;
 class CartService 
 {
     protected $cart;
+    protected $searchValue;
 
     public function __construct()
     {
         $this->cart = session()->get('cart') ?? collect([]);
+        $this->searchValue = session()->get('searchValue') ?? collect([]);
 
         $cart = collect(json_decode(session()->get('cart') , true));
         $this->cart = $cart->count() ? $cart : collect([
@@ -219,6 +221,33 @@ class CartService
         }
 
         return $item;
+    }
+
+    public function resultSearch($value)
+    {
+       
+        $this->searchValue = $value;
+
+        session()->put('searchValue' , $this->searchValue);
+
+    }
+
+    public function allResultSearch()
+    {
+        $searchVal = $this->searchValue;
+        $searchVal = collect($this->searchValue)->map(function($item) use ($searchVal) {
+            
+            return $item;
+        });
+        return $searchVal;
+    }
+
+    public function countSearch($key)
+    {
+        if(! $this->has($key) ) return 0;
+
+        return $this->get($key);
+
     }
 
    
