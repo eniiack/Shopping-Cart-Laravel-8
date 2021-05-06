@@ -16,13 +16,23 @@
                             <div class="account-box-content">
                                 <form method="POST" action="{{ route('admin.loginAdminPost') }}" class="form-account">
                                     @csrf
-                                    <div class="form-account-title">
+                                    {{-- <div class="form-account-title">
                                         <label for="email-phone">ایمیل</label>
                                         <input name="email" type="email"
                                             class="number-email-input  @error('email') is-invalid @enderror"
                                             id="email-phone" placeholder="ایمیل خود را وارد نمایید">
                                         <span class="mdi mdi-account-outline"></span>
                                         @error('email')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div> --}}
+                                    <div class="form-account-title">
+                                        <label for="phone-phone">شماره همراه</label>
+                                        <input name="phone" type="tel"
+                                            class="number-email-input  @error('phone') is-invalid @enderror"
+                                            id="phone-phone" placeholder="شماره همراه خود را وارد نمایید">
+                                        <span class="mdi mdi-account-outline"></span>
+                                        @error('phone')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>

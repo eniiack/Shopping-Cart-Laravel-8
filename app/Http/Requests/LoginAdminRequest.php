@@ -30,7 +30,7 @@ class LoginAdminRequest extends FormRequest
                 $email = request('email');
                 $user = User::where('email' , $email)->first();
                 if ( is_null($user) ) {
-                    $fail('این ایمیل در سیستم ثبت نشده است');
+                    $fail('این همراه در سیستم ثبت نشده است');
                 }
             },],
             'password' => ["required", function ($attribute, $value, $fail ) {
@@ -45,7 +45,7 @@ class LoginAdminRequest extends FormRequest
             }
             },
         ],
-        "g-recaptcha-response" => ['required' , new recaptcha()]
+       
         ];
     }
 }

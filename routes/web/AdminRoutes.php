@@ -40,6 +40,10 @@ Route::post('/users/{user}/permissions', [UserPermissionController::class , 'sto
 Route::get('/login', [LoginController::class , 'loginAdmin'] )->name('loginAdmin');
 Route::post('/login', [LoginController::class , 'loginAdminPost'] )->name('loginAdminPost');
 
+
+Route::get('/verify', [LoginController::class , 'verify_code'] )->name('verify_code');
+Route::post('/verify', [LoginController::class , 'verify_code_post'] )->name('verify_code_post');
+
 Route::resource('products', ProductController::class )->middleware('auth.admin');
 Route::get('comments/unapproved' , [CommentsController::class])->name('comments.unapproveds');
 Route::resource('comments', CommentsController::class )->only(['index' , 'update' , 'destroy']);

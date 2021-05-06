@@ -31,6 +31,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'api_token',
         'is_superuser',
         'is_staff',
     ];
@@ -43,6 +44,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'api_token',
     ];
 
     /**
@@ -86,6 +88,11 @@ class User extends Authenticatable
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function activeCode()
+    {
+        return $this->hasMany(ActiveCode::class);
     }
 
 }

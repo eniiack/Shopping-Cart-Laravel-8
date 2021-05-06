@@ -29,6 +29,9 @@ class HomeController extends Controller
    {
        return view('home');
    }
+   public function test(){
+       return 'test';
+   }
     public function shop($category)
     {
         // session()->put('searchValue' , null);

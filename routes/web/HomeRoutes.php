@@ -65,7 +65,7 @@ Route::post('/register', [CustomAuthController::class , 'register_form'])->name(
 Route::get('/login', [CustomAuthController::class , 'login'] );
 Route::post('/login', [CustomAuthController::class , 'login_form'] )->name('login');
 Route::post('/logout' , [CustomAuthController::class , 'logout'] )->name('logout');
-Route::get('/recovery_password', [CustomAuthController::class , 'recovery'] )->name('recovery');
+// Route::get('/recovery_password', [CustomAuthController::class , 'recovery'] )->name('recovery');
 Route::post('/recovery_password', [CustomAuthController::class , 'recover_password'] )->name('recovery');
 
 // Route::get('downloads/file', function () {

@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Notifications\LoginToWebsite;
 use App\Rules\recaptcha;
-
+use Illuminate\Support\Str;
 class CustomAuthController extends Controller
 {
 
@@ -57,7 +58,9 @@ class CustomAuthController extends Controller
         User::create([
             "name" => $valid_data['name'],
             "email" => $valid_data['email'],
-            "password" => $pass
+            "password" => $pass,
+            "api_token"=> Str::random(100)
+            
         ]);
 
         alert()->success('با موفقیت ثبت نام شدید', 'موفقیت');
@@ -106,6 +109,8 @@ class CustomAuthController extends Controller
         if($request->remember == 1){
             cookie()->queue(cookie('person' , $request->email , 60 * 8760));
         }
+        $user->notify(new LoginToWebsite());
+
         session(['person' => $token]);
         return redirect('/');
    
